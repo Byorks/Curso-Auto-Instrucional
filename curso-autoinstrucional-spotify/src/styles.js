@@ -1,5 +1,9 @@
-import { createTheme, alpha, getContrastRatio } from "@mui/material/styles";
+import { createTheme, alpha, getContrastRatio, styled } 
+from "@mui/material/styles";
+import { Paper } from "@mui/material";
 
+
+// Cores
 const violetBase = "#7F00FF";
 const violetMain = alpha(violetBase, 0.7);
 
@@ -24,6 +28,3 @@ export const theme = createTheme({
         },
     },
 });
-
-
-
