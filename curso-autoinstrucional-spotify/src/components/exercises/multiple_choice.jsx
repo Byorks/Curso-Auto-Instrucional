@@ -17,7 +17,8 @@ import {
 
 import RadioInput from "../radio_input/radio_input.jsx";
 import { ExercisePaper } from "./styles";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function MultipleChoiceEx({
   id,
@@ -33,6 +34,37 @@ export default function MultipleChoiceEx({
   const [showCorrectAn, setShowCorrectAn] = useState(false);
   const [correctAn, setCorrectAn] = useState([]);
 
+  // Pegando parâmetro da URL
+  const {idUrl} = useParams();
+  const key = `modulo_${idUrl}_questao_${id}`
+
+  // Salva no localStorage
+  const saveToLocalStorage = (disable, correct, attempts) => {
+    let userAnswer = {
+      id: id,
+      attempts: attempts,
+      selectedList: selectedList,
+      disableInputs: disable,
+      correctAnswer: correct
+    };
+    localStorage.setItem(key, JSON.stringify(userAnswer));
+  }
+
+  // Recuperar do localStorage 
+  const loadFromLocalStorage = () => {
+    const storedUserAnswer = localStorage.getItem(key);
+    if (storedUserAnswer) {
+      let parsed = JSON.parse(storedUserAnswer);
+      setAttempts(parsed.attempts);
+      setDisableInputs(parsed.disableInputs);
+      setSelectedList(parsed.selectedList);
+    }
+  }
+
+  useEffect(() => { 
+    loadFromLocalStorage();
+  }, [])
+
   const handleChoices = (event) => {
     if (!selectedList.includes(parseInt(event.target.name))) {
       setSelectedList([...selectedList, parseInt(event.target.name)]);
@@ -43,6 +75,10 @@ export default function MultipleChoiceEx({
   };
 
   const verifyChoices = () => {
+    let disable = false;
+    let correct = false;
+    let attemptsQuestions = attempts;
+
     if (selectedList.length == 0) {
       setFeedback("Selecione uma das opções");
       return;
@@ -52,19 +88,24 @@ export default function MultipleChoiceEx({
       selectedList.length === correct_answer.length
     ) {
       setFeedback("Correto!");
-      setDisableInputs(true);
+      disable = true
+      correct = true
+      setDisableInputs(disable);
       setError(false);
     } else {
       setFeedback("Incorreto!");
-      setAttempts(attempts + 1);
+      attemptsQuestions += 1;
+      setAttempts(attemptsQuestions);
       setError(true);
       if (attempts == 3) {
-        setDisableInputs(true);
+        disable = true;
+        setDisableInputs(disable);
         setFeedback("Incorreto! Acabaram suas tentativas");
         setShowCorrectAn(true);
         setCorrectAn(options.filter((opt) => correct_answer.includes(opt.id)));
       }
     }
+    saveToLocalStorage(disable, correct, attemptsQuestions)
   };
 
   return (

@@ -23,13 +23,14 @@ import { ExercisePaper } from "./styles.js";
 import { useParams } from "react-router-dom";
 
 export default function SingleChoiceEx({ question }) {
-   
   const [optionSelected, setOptionSelected] = useState("");
   const [error, setError] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [disableInputs, setDisableInputs] = useState(false);
   const [attempts, setAttempts] = useState(1);
   const [showCorrectAn, setShowCorrectAn] = useState("");
+
+  // Pegando parâmetro da URL
   const {id}  = useParams();
   const key = `modulo_${id}_questao_${question.id}`
   
@@ -58,8 +59,6 @@ export default function SingleChoiceEx({ question }) {
       setOptionSelected(parsed.optionSelected);
     }
   }
-
- 
 
   useEffect(() => { 
     loadFromLocalStorage();
@@ -101,7 +100,6 @@ export default function SingleChoiceEx({ question }) {
         setShowCorrectAn(option.label); // armazena as respostas corretas
       }
     }
-
     saveToLocalStorage(disable, correct, attemptQuestions);
   };
 
