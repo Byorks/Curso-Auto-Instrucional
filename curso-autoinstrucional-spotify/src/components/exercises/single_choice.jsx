@@ -13,25 +13,59 @@ import {
   ThemeProvider,
   createTheme,
   List,
-  ListItem
+  ListItem,
+  Grow,
 } from "@mui/material";
 
 import RadioInput from "../radio_input/radio_input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ExercisePaper } from "./styles.js";
-import { useRadioGroup } from "@mui/material";
-
-// const theme = createTheme();
+import { useParams } from "react-router-dom";
 
 export default function SingleChoiceEx({ question }) {
-  // Lógica para verificação de alternativas
+   
   const [optionSelected, setOptionSelected] = useState("");
   const [error, setError] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [disableInputs, setDisableInputs] = useState(false);
   const [attempts, setAttempts] = useState(1);
   const [showCorrectAn, setShowCorrectAn] = useState("");
+  const {id}  = useParams();
+  const key = `modulo_${id}_questao_${question.id}`
+  
+  // Salvar no localStorage
+  const saveToLocalStorage = (disable, correct, attempts) => {
+    let userAnswer = {
+      id: question.id,
+      attempts: attempts,
+      optionSelected: optionSelected,
+      disableInputs: disable,
+      correctAnswer: correct,
+    };
+    console.log(userAnswer);
+    
+    localStorage.setItem(key, JSON.stringify(userAnswer));
+    // alert("Opções selecionadas salvas no local storage");
+  };
 
+  // Recuperar do localStorage 
+  const loadFromLocalStorage = () => {
+    const storedUserAnswer = localStorage.getItem(key);
+    if (storedUserAnswer) {
+      let parsed = JSON.parse(storedUserAnswer);
+      setAttempts(parsed.attempts);
+      setDisableInputs(parsed.disableInputs);
+      setOptionSelected(parsed.optionSelected);
+    }
+  }
+
+ 
+
+  useEffect(() => { 
+    loadFromLocalStorage();
+  }, [])
+
+// Lógica para verificação de alternativas
   const handleOption = () => {
     // Sem seleção
     if (!optionSelected) {
@@ -39,25 +73,36 @@ export default function SingleChoiceEx({ question }) {
       return;
     }
 
+    let disable = false;
+    let correct = false;
+    let attemptQuestions = attempts;
+
     // Verifica se o usuário acertou
     if (question.correct_answer == optionSelected) {
       setFeedback("Resposta correta!");
+      disable = true;
+      correct = true;
+      setDisableInputs(disable);
       setError(false);
-      setDisableInputs(true);
-    } else {
-      setFeedback("Resposta incorreta");
-      setError(true);
-      setAttempts(attempts + 1);
 
-      if (attempts == 3) {
-        setDisableInputs(true);
+    } else {
+      setFeedback("Resposta incorreta"); // Caso erre, menos 1 tentativa
+      setError(true);
+      attemptQuestions += 1;
+      setAttempts(attemptQuestions);
+
+      if (attempts >= 3) {
+        disable = true;
+        setDisableInputs(disable);
         setFeedback("Acabaram suas tentativas!");
         let option = question.options.find(
           (opt) => opt.id == question.correct_answer[0]
         );
-        setShowCorrectAn(option.label);
+        setShowCorrectAn(option.label); // armazena as respostas corretas
       }
     }
+
+    saveToLocalStorage(disable, correct, attemptQuestions);
   };
 
   /*  Exemplo com useEffect
@@ -102,12 +147,22 @@ export default function SingleChoiceEx({ question }) {
             ))}
           </RadioGroup>
           <FormHelperText>{feedback}</FormHelperText>
+          {/* Mostra as respostas corretas */}
           {showCorrectAn && (
-            <Box sx={{ padding: "12px"}}>
-              <Typography>As alternativas corretas são:</Typography>
-              <List>
-                <ListItem> {showCorrectAn}</ListItem>
-              </List>
+            <Box sx={{ padding: "12px" }}>
+              <Grow 
+                in={showCorrectAn}
+                style={{
+                transformOrigin: '0,0,0'}}
+                {...(showCorrectAn ? { timeout: 500 } : {})}
+              >
+                <Paper variant="outlined">
+                  <Typography>A alternativas correta é:</Typography>
+                  <List>
+                    <ListItem>{showCorrectAn}</ListItem>
+                  </List>
+                </Paper>
+              </Grow>
             </Box>
           )}
         </FormControl>

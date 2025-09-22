@@ -9,6 +9,10 @@ import {
   FormGroup,
   FormHelperText,
   Button,
+  Grow,
+  Paper,
+  List,
+  ListItem,
 } from "@mui/material";
 
 import RadioInput from "../radio_input/radio_input.jsx";
@@ -24,6 +28,10 @@ export default function MultipleChoiceEx({
   const [error, setError] = useState(false);
   const [selectedList, setSelectedList] = useState([]);
   const [feedback, setFeedback] = useState("");
+  const [attempts, setAttempts] = useState(1);
+  const [disableInputs, setDisableInputs] = useState();
+  const [showCorrectAn, setShowCorrectAn] = useState(false);
+  const [correctAn, setCorrectAn] = useState([]);
 
   const handleChoices = (event) => {
     if (!selectedList.includes(parseInt(event.target.name))) {
@@ -34,16 +42,28 @@ export default function MultipleChoiceEx({
     }
   };
 
-  console.log(selectedList);
-  const isOnTheList = () => {};
-
   const verifyChoices = () => {
-    if (selectedList.every((item) => correct_answer.includes(item))) {
+    if (selectedList.length == 0) {
+      setFeedback("Selecione uma das opções");
+      return;
+    }
+    if (
+      selectedList.every(item => correct_answer.includes(item)) &&
+      selectedList.length === correct_answer.length
+    ) {
       setFeedback("Correto!");
+      setDisableInputs(true);
       setError(false);
     } else {
       setFeedback("Incorreto!");
+      setAttempts(attempts + 1);
       setError(true);
+      if (attempts == 3) {
+        setDisableInputs(true);
+        setFeedback("Incorreto! Acabaram suas tentativas");
+        setShowCorrectAn(true);
+        setCorrectAn(options.filter((opt) => correct_answer.includes(opt.id)));
+      }
     }
   };
 
@@ -70,10 +90,32 @@ export default function MultipleChoiceEx({
                 label={option.label}
                 control={<Checkbox />}
                 onChange={handleChoices}
+                disabled={disableInputs}
               />
             ))}
           </FormGroup>
           <FormHelperText>{feedback}</FormHelperText>
+          {/* Mostra as respostas corretas */}
+          {showCorrectAn && (
+            <Box sx={{ padding: "12px" }}>
+              <Grow
+                in={showCorrectAn}
+                style={{
+                  transformOrigin: "0,0,0",
+                }}
+                {...(showCorrectAn ? { timeout: 500 } : {})}
+              >
+                <Paper variant="outlined">
+                  <Typography>As alternativas corretas são:</Typography>
+                  <List>
+                    {correctAn.map((option) => (
+                      <ListItem key={option.id} >{option.label}</ListItem>
+                    ))}
+                  </List>
+                </Paper>
+              </Grow>
+            </Box>
+          )}
         </FormControl>
         <Button type="input" onClick={() => verifyChoices()}>
           Enviar
