@@ -20,12 +20,7 @@ import { ExercisePaper } from "./styles";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export default function MultipleChoiceEx({
-  id,
-  title,
-  correct_answer,
-  options,
-}) {
+export default function MultipleChoiceEx({ question }) {
   const [error, setError] = useState(false);
   const [selectedList, setSelectedList] = useState([]);
   const [feedback, setFeedback] = useState("");
@@ -35,22 +30,22 @@ export default function MultipleChoiceEx({
   const [correctAn, setCorrectAn] = useState([]);
 
   // Pegando parâmetro da URL
-  const {idUrl} = useParams();
-  const key = `modulo_${idUrl}_questao_${id}`
+  const { id } = useParams();
+  const key = `modulo_${id}_questao_${question.id}`;
 
   // Salva no localStorage
   const saveToLocalStorage = (disable, correct, attempts) => {
     let userAnswer = {
-      id: id,
+      id: question.id,
       attempts: attempts,
       selectedList: selectedList,
       disableInputs: disable,
-      correctAnswer: correct
+      correctAnswer: correct,
     };
     localStorage.setItem(key, JSON.stringify(userAnswer));
-  }
+  };
 
-  // Recuperar do localStorage 
+  // Recuperar do localStorage
   const loadFromLocalStorage = () => {
     const storedUserAnswer = localStorage.getItem(key);
     if (storedUserAnswer) {
@@ -59,11 +54,11 @@ export default function MultipleChoiceEx({
       setDisableInputs(parsed.disableInputs);
       setSelectedList(parsed.selectedList);
     }
-  }
+  };
 
-  useEffect(() => { 
+  useEffect(() => {
     loadFromLocalStorage();
-  }, [])
+  }, []);
 
   const handleChoices = (event) => {
     if (!selectedList.includes(parseInt(event.target.name))) {
@@ -84,12 +79,12 @@ export default function MultipleChoiceEx({
       return;
     }
     if (
-      selectedList.every(item => correct_answer.includes(item)) &&
-      selectedList.length === correct_answer.length
+      selectedList.every((item) => question.correct_answer.includes(item)) &&
+      selectedList.length === question.correct_answer.length
     ) {
       setFeedback("Correto!");
-      disable = true
-      correct = true
+      disable = true;
+      correct = true;
       setDisableInputs(disable);
       setError(false);
     } else {
@@ -102,10 +97,10 @@ export default function MultipleChoiceEx({
         setDisableInputs(disable);
         setFeedback("Incorreto! Acabaram suas tentativas");
         setShowCorrectAn(true);
-        setCorrectAn(options.filter((opt) => correct_answer.includes(opt.id)));
+        setCorrectAn(question.options.filter((opt) => question.correct_answer.includes(opt.id)));
       }
     }
-    saveToLocalStorage(disable, correct, attemptsQuestions)
+    saveToLocalStorage(disable, correct, attemptsQuestions);
   };
 
   return (
@@ -121,10 +116,10 @@ export default function MultipleChoiceEx({
       <ExercisePaper sx={{ display: "flex", flexDirection: "column" }}>
         <FormControl error={error}>
           <FormLabel sx={{ width: "100%", textAlign: "left" }}>
-            {id} - {title}
+            {question.id} - {question.title}
           </FormLabel>
           <FormGroup>
-            {options.map((option) => (
+            {question.options.map((option) => (
               <FormControlLabel
                 name={option.id}
                 key={option.id}
@@ -150,7 +145,7 @@ export default function MultipleChoiceEx({
                   <Typography>As alternativas corretas são:</Typography>
                   <List>
                     {correctAn.map((option) => (
-                      <ListItem key={option.id} >{option.label}</ListItem>
+                      <ListItem key={option.id}>{option.label}</ListItem>
                     ))}
                   </List>
                 </Paper>
