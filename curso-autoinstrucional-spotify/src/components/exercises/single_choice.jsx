@@ -11,7 +11,6 @@ import {
   Button,
   Paper,
   ThemeProvider,
-  createTheme,
   List,
   ListItem,
   Grow,

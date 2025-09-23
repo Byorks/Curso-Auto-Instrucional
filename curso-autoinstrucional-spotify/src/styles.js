@@ -66,6 +66,16 @@ export const theme = createTheme({
       contrastText: getContrastRatio(blackMain, "#fff") > 4.5 ? "#fff" : "#111",
     },
   },
+  typography : { 
+  fontFamily: 'Roboto, sans-serif',
+  h1: {
+    fontFamily: "Helvetica",
+    fontSize: "3rem",
+    fontWeight: "bold",
+    lineHeight: 1.2,
+    letterSpacing: -0.5,
+  }
+},
   components: {
     MuiCssBaseline: {
       styleOverrides: (theme) => ({
@@ -91,3 +101,4 @@ export const theme = createTheme({
     },
   },
 });
+
