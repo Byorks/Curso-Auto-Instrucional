@@ -56,7 +56,7 @@ export default function ModulesPage() {
         <Grid>
           {/* <ToggleColorMode   /> */}
         </Grid>
-        <Grid container spacing={2}>
+        <Grid container spacing={5}>
           <Typography variant="h4" component="h2">
             Módulos
           </Typography>

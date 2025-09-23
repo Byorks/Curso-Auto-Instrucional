@@ -1,9 +1,14 @@
 import Class from "../../../components/class/class";
 import SingleChoiceEx from "../../../components/exercises/single_choice";
 import MultipleChoiceEx from "../../../components/exercises/multiple_choice";
-import { Typography, Grid, Skeleton } from "@mui/material";
+import { Typography, Grid, Skeleton, List, ListItem, Box } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
-import classDrawer from "../../../components/classDrawer";
+// import classDrawer from "../../../components/classDrawer";
+
+const Paragraph = styled('p') (({theme}) => ({
+  padding: theme.spacing(1),
+}));
 
 export default function Class1() {
   const [loading, setLoading] = useState(true);
@@ -170,44 +175,91 @@ export default function Class1() {
 
   let coverImg = "https://images2.alphacoders.com/109/thumb-1920-1093974.jpg";
   return (
-    <Class cover={coverImg}>
+    <Class cover={coverImg} title={"O que é e como planejar"}>
       <article>
-        <Typography className="py-5" variant="h2" component="h2">
+        <Typography className="py-5" variant="h2" component="h1" gutterBottom>
           O que é e como planejar
         </Typography>
+        <section className="py-5 m-2">
+          <Typography variant="h4" component="h2">
+            Objetivo
+          </Typography>
 
-        <Typography variant="h3" component="h3">
-          Objetivo
-        </Typography>
-        <Typography col="p" variant="body1">
-          Entender o que é uma playlist temática e aprender a escolher um tema
-          que faça sentido para você.
-        </Typography>
+          <Typography component="p" variant="body1" sx={{ padding: 1}}>
+            Entender o que é uma playlist temática e aprender a escolher um tema
+            que faça sentido para você.
+          </Typography>
+        </section>
 
+        <section className="py-5 m-2">
+          <Typography variant="h4" component="h2">
+            O que é uma playlist temática?
+          </Typography>
+          <Typography component="p" variant="body1" sx={{ padding: 1}}>
+            Uma playlist temática é um{" "}
+            <strong>
+              conjunto de músicas organizadas a partir de um tema, situação ou
+              mood
+            </strong>{" "}
+            (estado de espírito).
+          </Typography>
+         <Box component="ul" sx={{ listStyleType: "disc" ,pl: 4 }}>
+            <li>Não é apenas juntar músicas que você gosta.</li>
+            <li>
+              É criar uma experiência para quem escuta, como se fosse uma trilha
+              sonora para um momento específico.
+            </li>
+          </Box>
+          <Paragraph>Exemplo:</Paragraph>
+         <Box component="ul" sx={{ listStyleType: "disc" ,pl: 4 }}>
+            <li>
+              Se você cria uma playlist chamada “<em>Noite de Chuva 🌧️</em>”,
+              quem for ouvir espera encontrar músicas calmas, suaves, talvez
+              acústicas ou lo-fi.
+            </li>
+            <li>
+              Se o nome for “<em>Pré-treino Insano 💪</em>”, a expectativa são
+              batidas fortes, eletrônicas ou rap motivacional.
+            </li>
+          </Box>
+        </section>
 
-        <Typography variant="h3" component="h3">
-          O que é uma playlist temática?
-        </Typography>
-        <Typography component="p" variant="body1">
-          Uma playlist temática é um <strong>conjunto de músicas organizadas a partir de um tema, situação ou mood</strong> (estado de espírito).
-        </Typography>
-        <ul>
-          <li>Não é apenas juntar músicas que você gosta.</li>
-          <li>É criar uma experiência para quem escuta, como se fosse uma trilha sonora para um momento específico.</li>
-          <li>Ajuda a manter a playlist coerente, sem músicas que “quebram o clima</li>
-          <li>Torna mais divertido criar, como se fosse contar uma história com músicas.</li>
- 
-        </ul>
-
-        <Typography className="pb-3" variant="body1" component="p">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </Typography>
+        <section className="py-5 m-2">
+          <Typography variant="h4" component="h2">
+            Por que escolher um tema?
+          </Typography>
+          <Paragraph>
+            Escolher um tema não é só um detalhe — é o que vai dar “alma” para a
+            sua playlist.
+          </Paragraph>
+          
+          {/* Dá para fazer slide aqui */}
+         <Box component="ul" sx={{ listStyleType: "disc" ,pl: 4 }}>
+            <li>
+              <strong>Dá identidade à sua playlist:</strong> <br /> Uma playlist
+              chamada <em>“Chill vibes”</em> transmite imediatamente calma e
+              relaxamento. Já <em>“Explosão do treino”</em> mostra energia e
+              intensidade. O nome e o tema já dizem o que esperar.
+            </li>
+            <li>
+              <strong>Facilita para quem procura um clima específico:</strong>{" "}
+              <br />
+              Quando alguém está estudando, quer algo diferente de quem vai para
+              uma festa. O tema ajuda a pessoa certa a encontrar sua playlist
+              com mais facilidade.
+            </li>
+            <li>
+              <strong>Ajuda a manter coerência:</strong> <br />
+              Se o tema é “Relaxar”, uma música de funk pesado pode quebrar o
+              clima. O tema funciona como um guia para você manter a mesma vibe.
+            </li>
+            <li>
+              <strong>Torna mais divertido criar:</strong>
+              <br />É como montar uma trilha sonora para um filme: você conta
+              uma história só com músicas.
+            </li>
+          </Box>
+        </section>
 
         <Grid
           container

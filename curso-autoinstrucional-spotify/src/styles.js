@@ -1,5 +1,9 @@
-import { createTheme, alpha, getContrastRatio, styled } 
-from "@mui/material/styles";
+import {
+  createTheme,
+  alpha,
+  getContrastRatio,
+  styled,
+} from "@mui/material/styles";
 import { Paper } from "@mui/material";
 
 // Cores
@@ -15,48 +19,75 @@ const marianBlueMain = alpha(marianBlueBase, 0.7);
 const emeraldBase = "#34D399";
 const emeraldMain = alpha(emeraldBase, 0.7);
 
-const frenchGrayBase = "#34D399";
+const frenchGrayBase = "#D1D5DB";
 const frenchGrayMain = alpha(frenchGrayBase, 0.7);
 
 export const theme = createTheme({
-    colorSchemes: { 
-        dark: true,
+  colorSchemes: {
+    light: true,
+    dark: true,
+  },
+  palette: {
+    primary: {
+      main: marianBlueBase,
     },
-    palette: {
-        french_gray: {
-            main: frenchGrayMain,
-            light: alpha(frenchGrayBase, 0.5),
-            dark: alpha(frenchGrayBase, 0.9),
-            contrastText:
-            getContrastRatio(frenchGrayMain, "#fff") > 4.5 ? "#fff" : "#111",
-        },
-        emerald: {
-            main: emeraldMain,
-            light: alpha(emeraldBase, 0.5),
-            dark: alpha(emeraldBase, 0.9),
-            contrastText:
-            getContrastRatio(emeraldMain, "#fff") > 4.5 ? "#fff" : "#111",
-        },
-        marian_blue: {
-            main: marianBlueMain,
-            light: alpha(marianBlueBase, 0.5),
-            dark: alpha(marianBlueBase, 0.9),
-            contrastText:
-            getContrastRatio(marianBlueMain, "#fff") > 4.5 ? "#fff" : "#111",
-        },
-        violet: {
-            main: violetMain,
-            light: alpha(violetBase, 0.5),
-            dark: alpha(violetBase, 0.9),
-            contrastText:
-            getContrastRatio(violetMain, "#fff") > 4.5 ? "#fff" : "#111",
-        },
-        black: {
-            main: blackMain,
-            light: alpha(blackBase, 0.5),
-            dark: alpha(blackBase, 0.9),
-            contrastText:
-            getContrastRatio(blackMain, "#fff") > 4.5 ? "#fff" : "#111",
-        },
+    french_gray: {
+      main: frenchGrayMain,
+      light: alpha(frenchGrayBase, 0.5),
+      dark: alpha(frenchGrayBase, 0.9),
+      contrastText:
+        getContrastRatio(frenchGrayMain, "#fff") > 4.5 ? "#fff" : "#111",
     },
+    emerald: {
+      main: emeraldMain,
+      light: alpha(emeraldBase, 0.5),
+      dark: alpha(emeraldBase, 0.9),
+      contrastText:
+        getContrastRatio(emeraldMain, "#fff") > 4.5 ? "#fff" : "#111",
+    },
+    marian_blue: {
+      main: marianBlueMain,
+      light: alpha(marianBlueBase, 0.5),
+      dark: alpha(marianBlueBase, 0.9),
+      contrastText:
+        getContrastRatio(marianBlueMain, "#fff") > 4.5 ? "#fff" : "#111",
+    },
+    violet: {
+      main: violetMain,
+      light: alpha(violetBase, 0.5),
+      dark: alpha(violetBase, 0.9),
+      contrastText:
+        getContrastRatio(violetMain, "#fff") > 4.5 ? "#fff" : "#111",
+    },
+    black: {
+      main: blackMain,
+      light: alpha(blackBase, 0.5),
+      dark: alpha(blackBase, 0.9),
+      contrastText: getContrastRatio(blackMain, "#fff") > 4.5 ? "#fff" : "#111",
+    },
+  },
+  components: {
+    MuiCssBaseline: {
+      styleOverrides: (theme) => ({
+        h1: {
+          ...theme.typography.h1,
+        },
+        h2: {
+          ...theme.typography.h2,
+        },
+        h3: {
+          ...theme.typography.h3,
+        },
+        h4: {
+          ...theme.typography.h4,
+        },
+        h5: {
+          ...theme.typography.h5,
+        },
+        h6: {
+          ...theme.typography.h6,
+        },
+      }),
+    },
+  },
 });

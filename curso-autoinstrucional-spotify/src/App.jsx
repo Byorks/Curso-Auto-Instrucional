@@ -7,7 +7,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "./styles.js"
 
 // Pages
@@ -31,7 +31,9 @@ const router = createBrowserRouter ([
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <RouterProvider router={router} />
+      <CssBaseline>
+        <RouterProvider router={router} />
+      </CssBaseline>
     </ThemeProvider>
   );
 }
