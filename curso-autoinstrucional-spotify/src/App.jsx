@@ -11,7 +11,7 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import { theme } from "./styles.js"
 
 // Pages
-import IndexPage from './pages/home/Index.jsx';
+import IndexPage from './pages/home/index.jsx';
 import ModulesPage from './pages/modules/modules.jsx';
 import ModulesDetailPage from './pages/modules/modules_detail.jsx';
 
