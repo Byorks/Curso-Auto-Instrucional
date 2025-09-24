@@ -46,6 +46,7 @@ export default function Class1() {
     fetchQuestions();
   }, []);
 
+  // Dados mockados
   // let data = {
   //   items: [
   //     {
