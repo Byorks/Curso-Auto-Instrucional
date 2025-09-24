@@ -76,7 +76,7 @@ export default function SingleChoiceEx({ question }) {
     let attemptQuestions = attempts;
 
     // Verifica se o usuário acertou
-    if (question.correct_answer == optionSelected) {
+    if (question.correct_answer[0] == optionSelected) {
       setFeedback("Resposta correta!");
       disable = true;
       correct = true;
@@ -126,7 +126,7 @@ export default function SingleChoiceEx({ question }) {
         flexDirection: "column",
       }}
     >
-      <ExercisePaper sx={{ display: "flex", flexDirection: "column" }}>
+      <ExercisePaper variant="outlined" sx={{ display: "flex", flexDirection: "column" }}>
         <FormControl error={error}>
           <FormLabel sx={{ width: "100%", textAlign: "left" }}>
             {question.id.toString()} - {question.title}

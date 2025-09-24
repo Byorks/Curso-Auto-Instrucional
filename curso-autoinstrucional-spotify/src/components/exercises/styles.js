@@ -9,4 +9,5 @@ export const ExercisePaper = styled(Paper)(({ theme }) => ({
   height: "auto",
   padding: theme.spacing(2),
   textAlign: "center",
+  // backgroundColor: theme.palette.marian_blue.main,
 }));

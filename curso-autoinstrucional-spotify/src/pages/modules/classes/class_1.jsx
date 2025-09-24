@@ -6,8 +6,22 @@ import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 // import classDrawer from "../../../components/classDrawer";
 
-const Paragraph = styled('p') (({theme}) => ({
+const Paragraph = styled("p")(({ theme }) => ({
+  ...theme.typography.body1,
   padding: theme.spacing(1),
+}));
+
+const Item = styled("div")(({ theme }) => ({
+  backgroundColor: "#fff",
+  border: "1px solid",
+  borderColor: "#ced7e0",
+  padding: theme.spacing(1),
+  borderRadius: "4px",
+  textAlign: "center",
+  ...theme.applyStyles("dark", {
+    backgroundColor: "#1A2027",
+    borderColor: "#444d58",
+  }),
 }));
 
 export default function Class1() {
@@ -18,7 +32,7 @@ export default function Class1() {
     const fetchQuestions = async () => {
       try {
         const res = await fetch(
-          "https://python-apis-learn.onrender.com/json?filename=example.json"
+          "https://python-apis-learn.onrender.com/json?filename=questions_1.json"
         );
         const data = await res.json();
         setQuestions(data.items);
@@ -169,10 +183,9 @@ export default function Class1() {
   //   ],
   // };
 
-  console.log(questions);
   let singleQuestions = questions.filter((q) => q.type == "single");
-  console.log("questoes single \n", singleQuestions);
-
+  let multiQuestions = questions.filter((q) => q.type == "multiple");
+  console.log(singleQuestions);
   let coverImg = "https://images2.alphacoders.com/109/thumb-1920-1093974.jpg";
   return (
     <Class cover={coverImg} title={"O que é e como planejar"}>
@@ -185,7 +198,7 @@ export default function Class1() {
             Objetivo
           </Typography>
 
-          <Typography component="p" variant="body1" sx={{ padding: 1}}>
+          <Typography component="p" variant="body1" sx={{ padding: 1 }}>
             Entender o que é uma playlist temática e aprender a escolher um tema
             que faça sentido para você.
           </Typography>
@@ -195,7 +208,7 @@ export default function Class1() {
           <Typography variant="h4" component="h2">
             O que é uma playlist temática?
           </Typography>
-          <Typography component="p" variant="body1" sx={{ padding: 1}}>
+          <Typography component="p" variant="body1" sx={{ padding: 1 }}>
             Uma playlist temática é um{" "}
             <strong>
               conjunto de músicas organizadas a partir de um tema, situação ou
@@ -203,7 +216,7 @@ export default function Class1() {
             </strong>{" "}
             (estado de espírito).
           </Typography>
-         <Box component="ul" sx={{ listStyleType: "disc" ,pl: 4 }}>
+          <Box component="ul" sx={{ listStyleType: "disc", pl: 4 }}>
             <li>Não é apenas juntar músicas que você gosta.</li>
             <li>
               É criar uma experiência para quem escuta, como se fosse uma trilha
@@ -211,7 +224,7 @@ export default function Class1() {
             </li>
           </Box>
           <Paragraph>Exemplo:</Paragraph>
-         <Box component="ul" sx={{ listStyleType: "disc" ,pl: 4 }}>
+          <Box component="ul" sx={{ listStyleType: "disc", pl: 4 }}>
             <li>
               Se você cria uma playlist chamada “<em>Noite de Chuva 🌧️</em>”,
               quem for ouvir espera encontrar músicas calmas, suaves, talvez
@@ -232,9 +245,9 @@ export default function Class1() {
             Escolher um tema não é só um detalhe — é o que vai dar “alma” para a
             sua playlist.
           </Paragraph>
-          
+
           {/* Dá para fazer slide aqui */}
-         <Box component="ul" sx={{ listStyleType: "disc" ,pl: 4 }}>
+          <Box component="ul" sx={{ listStyleType: "disc", pl: 4 }}>
             <li>
               <strong>Dá identidade à sua playlist:</strong> <br /> Uma playlist
               chamada <em>“Chill vibes”</em> transmite imediatamente calma e
@@ -261,52 +274,61 @@ export default function Class1() {
           </Box>
         </section>
 
-        <Grid
-          container
-          columns={{ xs: 8, md: 12 }}
-          sx={{ justifyContent: "center", alignContent: "center" }}
-        >
-          <Grid size={{ xs: 8, md: 8 }}>
-            <section className="py-5">
-              {/* <SingleChoiceEx question={} /> */}
-            </section>
+        <section className="py-4">
+          <Typography variant="h4" component="h2">
+            Bora praticar
+          </Typography>
+          <Grid
+            container
+            columns={{ xs: 8, md: 12 }}
+            sx={{ justifyContent: "center", alignContent: "center" }}
+          >
+            <Grid size={{ xs: 8, md: 8 }}>
+              <section className="py-5">
+                {/* <SingleChoiceEx question={} /> */}
+              </section>
+            </Grid>
           </Grid>
-        </Grid>
 
-        <Grid
-          container
-          columns={{ xs: 8, md: 12 }}
-          sx={{ justifyContent: "center", alignContent: "center" }}
-        >
-          <Grid size={{ xs: 8, md: 8 }}>
-            <section className="py-5 w-full">
+          <Grid
+            container
+            columns={{ xs: 8, md: 12 }}
+            sx={{ justifyContent: "center", alignContent: "center" }}
+          >
+            <Grid size={{ xs: 8, md: 8 }}>
               {loading ? (
                 <Skeleton animation="wave" width="100%" height="300px" />
               ) : (
-                <MultipleChoiceEx question={questions[0]} />
-              )}
-            </section>
-          </Grid>
-        </Grid>
-
-        <Grid
-          container
-          columns={{ xs: 8, md: 12 }}
-          sx={{ justifyContent: "center", alignContent: "center" }}
-        >
-          <Grid size={{ xs: 8, md: 8 }}>
-            <section className="py-5">
-              {/* <SingleChoiceEx question={ } /> */}
-              {loading ? (
-                <Skeleton animation="wave" width="100%" height="300px" />
-              ) : (
-                singleQuestions.map((q) => (
-                  <SingleChoiceEx key={q.id} question={q} />
+                multiQuestions.map((q) => (
+                  <section className="py-5 w-full">
+                    <Item><MultipleChoiceEx key={q.id} question={q} /></Item>
+                  </section>
                 ))
               )}
-            </section>
+            </Grid>
           </Grid>
-        </Grid>
+
+          <Grid
+            container
+            columns={{ xs: 8, md: 12 }}
+            sx={{ justifyContent: "center", alignContent: "center" }}
+          >
+            {/* <SingleChoiceEx question={ } /> */}
+            {loading ? (
+              <Skeleton animation="wave" width="100%" height="300px" />
+            ) : (
+              singleQuestions.map((q) => (
+                <Grid size={{ xs: 8, md: 8 }} spacing={4}>
+                  <section className="py-5 w-full">
+                    <Item>
+                      <SingleChoiceEx key={q.id} question={q} />
+                    </Item>
+                  </section>
+                </Grid>
+              ))
+            )}
+          </Grid>
+        </section>
       </article>
     </Class>
   );

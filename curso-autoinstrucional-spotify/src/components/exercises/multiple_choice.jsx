@@ -113,7 +113,7 @@ export default function MultipleChoiceEx({ question }) {
         flexDirection: "column",
       }}
     >
-      <ExercisePaper sx={{ display: "flex", flexDirection: "column" }}>
+      <ExercisePaper variant="outlined" sx={{ display: "flex", flexDirection: "column" }}>
         <FormControl error={error}>
           <FormLabel sx={{ width: "100%", textAlign: "left" }}>
             {question.id} - {question.title}
