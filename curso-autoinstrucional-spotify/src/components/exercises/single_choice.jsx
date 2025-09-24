@@ -85,7 +85,7 @@ export default function SingleChoiceEx({ question }) {
     }
 
     // Verifica se o usuário acertou
-    if (question.correct_answer[0] === optionSelected) {
+    if (question.correct_answer[0] == optionSelected) {
       setFeedback("Resposta correta!");
       disable = true;
       correct = true;
