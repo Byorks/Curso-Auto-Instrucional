@@ -28,11 +28,16 @@ export default function SingleChoiceEx({ question }) {
   const [disableInputs, setDisableInputs] = useState(false);
   const [attempts, setAttempts] = useState(1);
   const [showCorrectAn, setShowCorrectAn] = useState("");
-
-  // Pegando parâmetro da URL
-  const {id}  = useParams();
-  const key = `modulo_${id}_questao_${question.id}`
   
+  // Pegando parâmetro da URL
+  const { id } = useParams();
+  const key = `modulo_${id}_questao_${question.id}`;
+
+  // Variáveis de verificação
+  let disable = false;
+  let correct = null;
+  let attemptQuestions = attempts;
+
   // Salvar no localStorage
   const saveToLocalStorage = (disable, correct, attempts) => {
     let userAnswer = {
@@ -43,46 +48,49 @@ export default function SingleChoiceEx({ question }) {
       correctAnswer: correct,
     };
     console.log(userAnswer);
-    
+
     localStorage.setItem(key, JSON.stringify(userAnswer));
     // alert("Opções selecionadas salvas no local storage");
   };
 
-  // Recuperar do localStorage 
+  // Recuperar do localStorage
   const loadFromLocalStorage = () => {
     const storedUserAnswer = localStorage.getItem(key);
     if (storedUserAnswer) {
       let parsed = JSON.parse(storedUserAnswer);
       setAttempts(parsed.attempts);
       setDisableInputs(parsed.disableInputs);
-      setOptionSelected(parsed.optionSelected);
+      disable = parsed.disableInputs;
+      if( disable ) {
+        setOptionSelected(question.correct_answer);
+        showCorrect(question);
+      }
+      else {
+        setOptionSelected(parsed.optionSelected);
+      }
     }
-  }
+  };
 
-  useEffect(() => { 
+  useEffect(() => {
     loadFromLocalStorage();
-  }, [])
+  }, []);
 
-// Lógica para verificação de alternativas
+  // Lógica para verificação de alternativas
   const handleOption = () => {
+    console.log("handleOption");
     // Sem seleção
     if (!optionSelected) {
       setFeedback("Selecione uma das opções");
       return;
     }
 
-    let disable = false;
-    let correct = false;
-    let attemptQuestions = attempts;
-
     // Verifica se o usuário acertou
-    if (question.correct_answer[0] == optionSelected) {
+    if (question.correct_answer[0] === optionSelected) {
       setFeedback("Resposta correta!");
       disable = true;
       correct = true;
       setDisableInputs(disable);
       setError(false);
-
     } else {
       setFeedback("Resposta incorreta"); // Caso erre, menos 1 tentativa
       setError(true);
@@ -91,6 +99,7 @@ export default function SingleChoiceEx({ question }) {
 
       if (attempts >= 3) {
         disable = true;
+        correct = false;
         setDisableInputs(disable);
         setFeedback("Acabaram suas tentativas!");
         let option = question.options.find(
@@ -102,6 +111,12 @@ export default function SingleChoiceEx({ question }) {
     saveToLocalStorage(disable, correct, attemptQuestions);
   };
 
+  const showCorrect = (question) => {
+     let option = question.options.find(
+          (opt) => opt.id == question.correct_answer[0]
+        );
+    setShowCorrectAn(option.label);
+  }
   /*  Exemplo com useEffect
     useEffect(() => {
     if (!optionSelected)
@@ -126,9 +141,19 @@ export default function SingleChoiceEx({ question }) {
         flexDirection: "column",
       }}
     >
-      <ExercisePaper variant="outlined" sx={{ display: "flex", flexDirection: "column" }}>
-        <FormControl error={error}>
-          <FormLabel sx={{ width: "100%", textAlign: "left" }}>
+      <ExercisePaper
+        variant="outlined"
+        sx={{ display: "flex", flexDirection: "column" }}
+      >
+        <FormControl sx={{ paddingBottom: "24px"}} error={error}>
+          <FormLabel
+            sx={{
+              width: "100%",
+              textAlign: "left",
+              paddingTop: "24px",
+              paddingBottom: "24px",
+            }}
+          >
             {question.id.toString()} - {question.title}
           </FormLabel>
           <RadioGroup
@@ -146,15 +171,16 @@ export default function SingleChoiceEx({ question }) {
           <FormHelperText>{feedback}</FormHelperText>
           {/* Mostra as respostas corretas */}
           {showCorrectAn && (
-            <Box sx={{ padding: "12px" }}>
-              <Grow 
+            <Box sx={{ padding: "24px" }}>
+              <Grow
                 in={showCorrectAn}
                 style={{
-                transformOrigin: '0,0,0'}}
+                  transformOrigin: "0,0,0",
+                }}
                 {...(showCorrectAn ? { timeout: 500 } : {})}
               >
-                <Paper variant="outlined">
-                  <Typography>A alternativas correta é:</Typography>
+                <Paper sx={{ padding: "12px"}} variant="outlined">
+                  <Typography align="left">A alternativas correta é:</Typography>
                   <List>
                     <ListItem>{showCorrectAn}</ListItem>
                   </List>

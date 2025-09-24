@@ -7,7 +7,7 @@ export default function ToggleColorMode() {
   }
   return (
     <FormControl>
-      <FormLabel id="demo-theme-toggle">Theme</FormLabel>
+      <FormLabel id="demo-theme-toggle">Tema</FormLabel>
       <RadioGroup
         aria-labelledby="demo-theme-toggle"
         name="theme-toggle"
@@ -15,9 +15,9 @@ export default function ToggleColorMode() {
         value={mode}
         onChange={(event) => setMode(event.target.value)}
       >
-        <FormControlLabel value="system" control={<Radio />} label="System" />
-        <FormControlLabel value="light" control={<Radio />} label="Light" />
-        <FormControlLabel value="dark" control={<Radio />} label="Dark" />
+        <FormControlLabel value="system" control={<Radio />} label="Sistema" />
+        <FormControlLabel value="light" control={<Radio />} label="Claro" />
+        <FormControlLabel value="dark" control={<Radio />} label="Escuro" />
       </RadioGroup>
     </FormControl>
   );

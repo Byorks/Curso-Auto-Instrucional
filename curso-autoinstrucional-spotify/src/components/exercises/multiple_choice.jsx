@@ -97,7 +97,11 @@ export default function MultipleChoiceEx({ question }) {
         setDisableInputs(disable);
         setFeedback("Incorreto! Acabaram suas tentativas");
         setShowCorrectAn(true);
-        setCorrectAn(question.options.filter((opt) => question.correct_answer.includes(opt.id)));
+        setCorrectAn(
+          question.options.filter((opt) =>
+            question.correct_answer.includes(opt.id)
+          )
+        );
       }
     }
     saveToLocalStorage(disable, correct, attemptsQuestions);
@@ -113,9 +117,19 @@ export default function MultipleChoiceEx({ question }) {
         flexDirection: "column",
       }}
     >
-      <ExercisePaper variant="outlined" sx={{ display: "flex", flexDirection: "column" }}>
-        <FormControl error={error}>
-          <FormLabel sx={{ width: "100%", textAlign: "left" }}>
+      <ExercisePaper
+        variant="outlined"
+        sx={{ display: "flex", flexDirection: "column" }}
+      >
+        <FormControl sx={{ paddingBottom: "24px"}} error={error}>
+          <FormLabel
+            sx={{
+              width: "100%",
+              textAlign: "left",
+              paddingTop: "24px",
+              paddingBottom: "24px",
+            }}
+          >
             {question.id} - {question.title}
           </FormLabel>
           <FormGroup>
@@ -133,7 +147,7 @@ export default function MultipleChoiceEx({ question }) {
           <FormHelperText>{feedback}</FormHelperText>
           {/* Mostra as respostas corretas */}
           {showCorrectAn && (
-            <Box sx={{ padding: "12px" }}>
+            <Box sx={{ padding: "24px" }}>
               <Grow
                 in={showCorrectAn}
                 style={{
@@ -141,7 +155,7 @@ export default function MultipleChoiceEx({ question }) {
                 }}
                 {...(showCorrectAn ? { timeout: 500 } : {})}
               >
-                <Paper variant="outlined">
+                <Paper sx={{ padding: "12px"}} variant="outlined">
                   <Typography>As alternativas corretas são:</Typography>
                   <List>
                     {correctAn.map((option) => (

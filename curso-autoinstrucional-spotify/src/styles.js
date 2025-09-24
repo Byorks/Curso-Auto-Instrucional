@@ -35,6 +35,7 @@ export const theme = createTheme({
       main: frenchGrayMain,
       light: alpha(frenchGrayBase, 0.5),
       dark: alpha(frenchGrayBase, 0.9),
+      bgcolor: alpha(frenchGrayBase, 0.3),
       contrastText:
         getContrastRatio(frenchGrayMain, "#fff") > 4.5 ? "#fff" : "#111",
     },
@@ -49,6 +50,7 @@ export const theme = createTheme({
       main: marianBlueMain,
       light: alpha(marianBlueBase, 0.5),
       dark: alpha(marianBlueBase, 0.9),
+      bgcolor: alpha(marianBlueBase, 0.2),
       contrastText:
         getContrastRatio(marianBlueMain, "#fff") > 4.5 ? "#fff" : "#111",
     },
@@ -69,36 +71,36 @@ export const theme = createTheme({
   typography : { 
   fontFamily: 'Roboto, sans-serif',
   h1: {
-    fontFamily: "Helvetica",
+    fontFamily: "Roboto",
     fontSize: "3rem",
     fontWeight: "bold",
     lineHeight: 1.2,
     letterSpacing: -0.5,
   }
 },
-  components: {
-    MuiCssBaseline: {
-      styleOverrides: (theme) => ({
-        h1: {
-          ...theme.typography.h1,
-        },
-        h2: {
-          ...theme.typography.h2,
-        },
-        h3: {
-          ...theme.typography.h3,
-        },
-        h4: {
-          ...theme.typography.h4,
-        },
-        h5: {
-          ...theme.typography.h5,
-        },
-        h6: {
-          ...theme.typography.h6,
-        },
-      }),
-    },
-  },
+  // components: {
+  //   MuiCssBaseline: {
+  //     styleOverrides: (theme) => ({
+  //       h1: {
+  //         ...theme.typography.h1,
+  //       },
+  //       h2: {
+  //         ...theme.typography.h2,
+  //       },
+  //       h3: {
+  //         ...theme.typography.h3,
+  //       },
+  //       h4: {
+  //         ...theme.typography.h4,
+  //       },
+  //       h5: {
+  //         ...theme.typography.h5,
+  //       },
+  //       h6: {
+  //         ...theme.typography.h6,
+  //       },
+  //     }),
+  //   },
+  // },
 });
 

@@ -295,24 +295,6 @@ export default function Class1() {
             columns={{ xs: 8, md: 12 }}
             sx={{ justifyContent: "center", alignContent: "center" }}
           >
-            <Grid size={{ xs: 8, md: 8 }}>
-              {loading ? (
-                <Skeleton animation="wave" width="100%" height="300px" />
-              ) : (
-                multiQuestions.map((q) => (
-                  <section className="py-5 w-full">
-                    <Item><MultipleChoiceEx key={q.id} question={q} /></Item>
-                  </section>
-                ))
-              )}
-            </Grid>
-          </Grid>
-
-          <Grid
-            container
-            columns={{ xs: 8, md: 12 }}
-            sx={{ justifyContent: "center", alignContent: "center" }}
-          >
             {/* <SingleChoiceEx question={ } /> */}
             {loading ? (
               <Skeleton animation="wave" width="100%" height="300px" />
@@ -327,6 +309,26 @@ export default function Class1() {
                 </Grid>
               ))
             )}
+          </Grid>
+
+          <Grid
+            container
+            columns={{ xs: 8, md: 12 }}
+            sx={{ justifyContent: "center", alignContent: "center" }}
+          >
+            <Grid size={{ xs: 8, md: 8 }}>
+              {loading ? (
+                <Skeleton animation="wave" width="100%" height="300px" />
+              ) : (
+                multiQuestions.map((q) => (
+                  <section className="py-5 w-full">
+                    <Item>
+                      <MultipleChoiceEx key={q.id} question={q} />
+                    </Item>
+                  </section>
+                ))
+              )}
+            </Grid>
           </Grid>
         </section>
       </article>

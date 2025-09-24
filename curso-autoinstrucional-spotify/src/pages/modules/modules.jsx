@@ -12,35 +12,35 @@ import {
 } from "@mui/material";
 import CardModule from "../../components/card_module/card_module";
 import ToggleColorMode from "../../components/toggle_color_mode";
+import capa1 from "../../assets/imgs/capa-mod-1.webp";
+import capa2 from "../../assets/imgs/capa-mod-2.jpg";
+import capa3 from "../../assets/imgs/capa-mod-3.jpg";
 
 export default function ModulesPage() {
-
-
   // Transformar card em lista
   let MODULESCARD = [
     {
       id: 1,
-      title: "Modulo 1",
+      title: "Módulo 1 – Planejando sua Playlist",
       description:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-      imgpath:
-        "https://imgs.search.brave.com/yqoDzXEmFHgDb15U76CfaFOAf7mAWzxpfONFjC24CKw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGF0YXNkYWNhc2Eu/Y29tLmJyL3NpdGVz/L2RlZmF1bHQvZmls/ZXMvc3R5bGVzL2dh/bGxlcnlfY3JvcC9w/dWJsaWMvaW1hZ2Vz/LWNhcnJvc3NlbC8x/NDk2My1mb3Rvcy1k/ZS1jYWNob3Jyby1w/b29kbGUtYXByb3Zl/aXRlLXNlbXAtb3Jp/Zy0xLndlYnA_aXRv/az1VQzdkV1BVUQ",
+        "Entenda o que é uma playlist temática, escolha um tema que combine com você e comece a definir as primeiras músicas. Descubra como dar identidade e coerência para sua coleção musical.",
+      imgpath: capa1,
     },
     {
       id: 2,
-      title: "Modulo 2",
+      title: "Módulo 2 – Criando no Spotify",
       description:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "Aprenda a criar sua playlist no Spotify, personalizar nome, descrição e capa, adicionar músicas de forma estratégica e organizar a ordem para manter a vibe coerente com o tema escolhido.",
       imgpath:
-        "https://imgs.search.brave.com/yqoDzXEmFHgDb15U76CfaFOAf7mAWzxpfONFjC24CKw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGF0YXNkYWNhc2Eu/Y29tLmJyL3NpdGVz/L2RlZmF1bHQvZmls/ZXMvc3R5bGVzL2dh/bGxlcnlfY3JvcC9w/dWJsaWMvaW1hZ2Vz/LWNhcnJvc3NlbC8x/NDk2My1mb3Rvcy1k/ZS1jYWNob3Jyby1w/b29kbGUtYXByb3Zl/aXRlLXNlbXAtb3Jp/Zy0xLndlYnA_aXRv/az1VQzdkV1BVUQ",
+        capa2,
     },
     {
       id: 3,
-      title: "Modulo 3",
+      title: "Módulo 3 – Compartilhar e Manter",
       description:
-        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+        "Descubra como compartilhar sua playlist com amigos ou nas redes sociais, torná-la colaborativa, receber sugestões e manter sua playlist atualizada e relevante ao longo do tempo.",
       imgpath:
-        "https://imgs.search.brave.com/yqoDzXEmFHgDb15U76CfaFOAf7mAWzxpfONFjC24CKw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGF0YXNkYWNhc2Eu/Y29tLmJyL3NpdGVz/L2RlZmF1bHQvZmls/ZXMvc3R5bGVzL2dh/bGxlcnlfY3JvcC9w/dWJsaWMvaW1hZ2Vz/LWNhcnJvc3NlbC8x/NDk2My1mb3Rvcy1k/ZS1jYWNob3Jyby1w/b29kbGUtYXByb3Zl/aXRlLXNlbXAtb3Jp/Zy0xLndlYnA_aXRv/az1VQzdkV1BVUQ",
+       capa3,
     },
   ];
 
@@ -53,9 +53,7 @@ export default function ModulesPage() {
           maxWidth: 1128,
         }}
       >
-        <Grid>
-          {/* <ToggleColorMode   /> */}
-        </Grid>
+       
         <Grid container spacing={5}>
           <Typography variant="h4" component="h2">
             Módulos
@@ -63,6 +61,8 @@ export default function ModulesPage() {
           {MODULESCARD.map((card) => (
             <CardModule key={card.id} {...card} />
           ))}
+
+          <ToggleColorMode   />
         </Grid>
       </Box>
     </main>

@@ -6,9 +6,11 @@ export default function Class2() {
     "https://applescoop.org/image/wallpapers/mac/spotify-app-store-music-creative-gradient-28-10-2024-1730155583-hd-wallpaper.webp";
   return (
     <Class cover={coverImg2}>
-      <Typography variant="h2" component="h2">
+      <Typography variant="h2" component="h2" gutterBottom>
         Aula 2
       </Typography>
+
+      
     </Class>
   );
 }
