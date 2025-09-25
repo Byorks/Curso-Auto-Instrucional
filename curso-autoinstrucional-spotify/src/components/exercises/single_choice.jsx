@@ -61,12 +61,14 @@ export default function SingleChoiceEx({ question }) {
       setAttempts(parsed.attempts);
       setDisableInputs(parsed.disableInputs);
       disable = parsed.disableInputs;
-      if( disable ) {
+      correct = parsed.correctAnswer;
+      if( disable && !correct ) {
         setOptionSelected(question.correct_answer);
         showCorrect(question);
       }
       else {
         setOptionSelected(parsed.optionSelected);
+        setFeedback("Resposta incorreta");
       }
     }
   };
@@ -85,7 +87,7 @@ export default function SingleChoiceEx({ question }) {
     }
 
     // Verifica se o usuário acertou
-    if (question.correct_answer[0] == optionSelected) {
+    if (question.correct_answer[0] == optionSelected[0]) {
       setFeedback("Resposta correta!");
       disable = true;
       correct = true;
@@ -97,7 +99,7 @@ export default function SingleChoiceEx({ question }) {
       attemptQuestions += 1;
       setAttempts(attemptQuestions);
 
-      if (attempts >= 3) {
+      if (attemptQuestions >= 3) {
         disable = true;
         correct = false;
         setDisableInputs(disable);

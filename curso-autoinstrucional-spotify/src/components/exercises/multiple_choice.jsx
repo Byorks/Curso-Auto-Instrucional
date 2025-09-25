@@ -15,6 +15,9 @@ import {
   ListItem,
 } from "@mui/material";
 
+// Escrever forma de marcar as checkboxes corretas caso o usuário erre, 
+// e deixar elas marcadas ao dar refresh
+
 import RadioInput from "../radio_input/radio_input.jsx";
 import { ExercisePaper } from "./styles";
 import { useState, useEffect } from "react";
@@ -167,7 +170,7 @@ export default function MultipleChoiceEx({ question }) {
             </Box>
           )}
         </FormControl>
-        <Button type="input" onClick={() => verifyChoices()}>
+        <Button disabled={disableInputs} type="input" onClick={() => verifyChoices()}>
           Enviar
         </Button>
       </ExercisePaper>

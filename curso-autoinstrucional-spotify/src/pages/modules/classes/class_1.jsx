@@ -279,37 +279,25 @@ export default function Class1() {
           <Typography variant="h4" component="h2">
             Bora praticar
           </Typography>
-          <Grid
-            container
-            columns={{ xs: 8, md: 12 }}
-            sx={{ justifyContent: "center", alignContent: "center" }}
-          >
-            <Grid size={{ xs: 8, md: 8 }}>
-              <section className="py-5">
-                {/* <SingleChoiceEx question={} /> */}
-              </section>
-            </Grid>
-          </Grid>
 
           <Grid
             container
             columns={{ xs: 8, md: 12 }}
             sx={{ justifyContent: "center", alignContent: "center" }}
           >
-            {/* <SingleChoiceEx question={ } /> */}
+            <Grid size={{ xs: 8, md: 8 }} spacing={4}>
             {loading ? (
               <Skeleton animation="wave" width="100%" height="300px" />
             ) : (
               singleQuestions.map((q) => (
-                <Grid size={{ xs: 8, md: 8 }} spacing={4}>
                   <section className="py-5 w-full">
                     <Item>
                       <SingleChoiceEx key={q.id} question={q} />
                     </Item>
                   </section>
-                </Grid>
               ))
             )}
+            </Grid>
           </Grid>
 
           <Grid
