@@ -65,10 +65,12 @@ export default function SingleChoiceEx({ question }) {
       if( disable && !correct ) {
         setOptionSelected(question.correct_answer);
         showCorrect(question);
+        setFeedback("Resposta incorreta")
+        setError(true);
       }
       else {
         setOptionSelected(parsed.optionSelected);
-        setFeedback("Resposta incorreta");
+        setFeedback("Resposta correta!");
       }
     }
   };

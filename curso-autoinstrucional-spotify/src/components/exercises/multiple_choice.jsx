@@ -15,7 +15,7 @@ import {
   ListItem,
 } from "@mui/material";
 
-// Escrever forma de marcar as checkboxes corretas caso o usuário erre, 
+// Escrever forma de marcar as checkboxes corretas caso o usuário erre,
 // e deixar elas marcadas ao dar refresh
 
 import RadioInput from "../radio_input/radio_input.jsx";
@@ -30,7 +30,12 @@ export default function MultipleChoiceEx({ question }) {
   const [attempts, setAttempts] = useState(1);
   const [disableInputs, setDisableInputs] = useState();
   const [showCorrectAn, setShowCorrectAn] = useState(false);
-  const [correctAn, setCorrectAn] = useState([]);
+  const [correctAlternative, setCorrectAlternative] = useState([]);
+  const [correctAn, setCorrectAn] = useState();
+
+  let correct = correctAn;   
+  let attemptQuestions = attempts;
+  console.log("attemptQuestions ->",attemptQuestions);
 
   // Pegando parâmetro da URL
   const { id } = useParams();
@@ -51,11 +56,15 @@ export default function MultipleChoiceEx({ question }) {
   // Recuperar do localStorage
   const loadFromLocalStorage = () => {
     const storedUserAnswer = localStorage.getItem(key);
+    console.log("stored user,", storedUserAnswer);
     if (storedUserAnswer) {
-      let parsed = JSON.parse(storedUserAnswer);
+      let parsed = JSON.parse(storedUserAnswer); // Converte de JSON para objeto
+      console.log(parsed);
       setAttempts(parsed.attempts);
       setDisableInputs(parsed.disableInputs);
       setSelectedList(parsed.selectedList);
+      setCorrectAn(parsed.correctAnswer);
+      attemptQuestions = parsed.attempts
     }
   };
 
@@ -63,6 +72,22 @@ export default function MultipleChoiceEx({ question }) {
     loadFromLocalStorage();
   }, []);
 
+  useEffect(() => {
+    console.log(`CorrectAN = ${correctAn}`)
+    if (!correctAn && attemptQuestions >= 3 ) {
+      setFeedback("Incorreto! Acabaram suas tentativas");
+      setError(true);
+      setShowCorrectAn(true);
+      setCorrectAlternative(
+        // Procura nas alternativas quais são as respostas corretas
+        question.options.filter((opt) =>
+          question.correct_answer.includes(opt.id)
+        )
+      );
+    } else if (correctAn, attempts, disableInputs){
+      setFeedback("Correto!");
+    }
+  }, [correctAn]);
   const handleChoices = (event) => {
     if (!selectedList.includes(parseInt(event.target.name))) {
       setSelectedList([...selectedList, parseInt(event.target.name)]);
@@ -73,11 +98,9 @@ export default function MultipleChoiceEx({ question }) {
   };
 
   const verifyChoices = () => {
-    let disable = false;
-    let correct = false;
-    let attemptsQuestions = attempts;
-
+    let disable = disableInputs;
     if (selectedList.length == 0) {
+      // usuário nao selecionou
       setFeedback("Selecione uma das opções");
       return;
     }
@@ -91,23 +114,41 @@ export default function MultipleChoiceEx({ question }) {
       setDisableInputs(disable);
       setError(false);
     } else {
-      setFeedback("Incorreto!");
-      attemptsQuestions += 1;
-      setAttempts(attemptsQuestions);
+      setFeedback("Incorreto! Tente mais uma vez");
+      attemptQuestions += 1;
+      setAttempts(attemptQuestions);
       setError(true);
+
       if (attempts == 3) {
         disable = true;
         setDisableInputs(disable);
         setFeedback("Incorreto! Acabaram suas tentativas");
         setShowCorrectAn(true);
-        setCorrectAn(
+        setCorrectAlternative(
+          // Procura nas alternativas quais são as respostas corretas
           question.options.filter((opt) =>
             question.correct_answer.includes(opt.id)
           )
         );
       }
     }
-    saveToLocalStorage(disable, correct, attemptsQuestions);
+    saveToLocalStorage(disable, correct, attemptQuestions);
+  };
+
+  // Vai decidir se marca a box ou não
+  const checkAlternative = (id) => {
+    // primeiro vamos verificar se o usuário errou ou acertou ou nem terminou
+    // na real, vamos começar marcando as corretas se o usuário acertar
+    if (correct) {
+      return question.correct_answer.includes(id);
+    } else {
+      return selectedList.includes(id);
+    }
+  };
+
+  // Feedback
+  const userFeedback = (feedback) => {
+    setFeedback(feedback);
   };
 
   return (
@@ -124,7 +165,7 @@ export default function MultipleChoiceEx({ question }) {
         variant="outlined"
         sx={{ display: "flex", flexDirection: "column" }}
       >
-        <FormControl sx={{ paddingBottom: "24px"}} error={error}>
+        <FormControl sx={{ paddingBottom: "24px" }} error={error}>
           <FormLabel
             sx={{
               width: "100%",
@@ -138,10 +179,11 @@ export default function MultipleChoiceEx({ question }) {
           <FormGroup>
             {question.options.map((option) => (
               <FormControlLabel
+                id={option.id}
                 name={option.id}
                 key={option.id}
                 label={option.label}
-                control={<Checkbox />}
+                control={<Checkbox checked={checkAlternative(option.id)} />}
                 onChange={handleChoices}
                 disabled={disableInputs}
               />
@@ -158,10 +200,10 @@ export default function MultipleChoiceEx({ question }) {
                 }}
                 {...(showCorrectAn ? { timeout: 500 } : {})}
               >
-                <Paper sx={{ padding: "12px"}} variant="outlined">
+                <Paper sx={{ padding: "12px" }} variant="outlined">
                   <Typography>As alternativas corretas são:</Typography>
                   <List>
-                    {correctAn.map((option) => (
+                    {correctAlternative.map((option) => (
                       <ListItem key={option.id}>{option.label}</ListItem>
                     ))}
                   </List>
@@ -170,7 +212,11 @@ export default function MultipleChoiceEx({ question }) {
             </Box>
           )}
         </FormControl>
-        <Button disabled={disableInputs} type="input" onClick={() => verifyChoices()}>
+        <Button
+          disabled={disableInputs}
+          type="input"
+          onClick={() => verifyChoices()}
+        >
           Enviar
         </Button>
       </ExercisePaper>
