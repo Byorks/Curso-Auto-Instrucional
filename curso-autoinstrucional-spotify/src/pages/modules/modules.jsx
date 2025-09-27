@@ -54,10 +54,13 @@ export default function ModulesPage() {
         }}
       >
        
-        <Grid container spacing={5}>
-          <Typography variant="h4" component="h2">
+          <Typography sx={{
+            paddingBottom: "12px",
+          }}
+           variant="h4" component="h2">
             Módulos
           </Typography>
+        <Grid container spacing={5}>
           {MODULESCARD.map((card) => (
             <CardModule key={card.id} {...card} />
           ))}

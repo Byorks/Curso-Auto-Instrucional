@@ -74,7 +74,7 @@ export default function MultipleChoiceEx({ question }) {
 
   useEffect(() => {
     console.log(`CorrectAN = ${correctAn}`)
-    if (!correctAn && attemptQuestions >= 3 ) {
+    if (!correctAn && attemptQuestions > 3 ) {
       setFeedback("Incorreto! Acabaram suas tentativas");
       setError(true);
       setShowCorrectAn(true);
