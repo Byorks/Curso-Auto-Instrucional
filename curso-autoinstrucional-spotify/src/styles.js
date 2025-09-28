@@ -47,6 +47,20 @@ const emerald = {
   900: "#006931",
 };
 
+const gray = {
+  50: "#edeef0",
+  100: "#d1d5db", // Main
+  200: "#b3b9c3",
+  300: "#959dac",
+  400: "#7e889a",
+  500: "#687489",
+  600: "#5b6678",
+  700: "#4a5361",
+  800: "#3a414c",
+  900: "#282c35",
+  1000: "#21242C",
+};
+
 const frenchGrayBase = "#D1D5DB";
 const frenchGrayMain = alpha(frenchGrayBase, 0.7);
 
@@ -60,6 +74,13 @@ export const theme = createTheme({
           dark: emerald[700],
           contrastText: "rgba(0, 0, 0, 0.87)",
           ...emerald,
+        },
+        secondary: {
+          main: gray[100],
+          light: gray[50],
+          dark: gray[900],
+          contrastText: "rgba(0, 0, 0, 0.87)",
+          ...gray,
         },
         marian_blue: {
           main: marianBlue[800],
@@ -78,6 +99,13 @@ export const theme = createTheme({
           contrastText: "rgba(0, 0, 0, 0.87)",
           ...emerald,
         },
+        secondary: {
+          main: gray[900],
+          light: gray[50],
+          dark: gray[1000],
+          contrastText: "rgba(0, 0, 0, 0.87)",
+          ...gray,
+        },
         marian_blue: {
           main: marianBlue[800],
           light: marianBlue[600],
@@ -85,59 +113,27 @@ export const theme = createTheme({
           contrastText: "#fff",
         },
       },
-      typography: {
-        fontFamily:
-          'Poppins, "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
-        h1: {
-          fontSize: "4rem",
-          fontFamily: '"Poppins", "Helvetica", "Roboto"',
-        },
-        h2: {
-          fontWeight: 600,
-          fontFamily: 'Poppins, "Helvetica", "Roboto"',
-          fontSize: "2rem",
-          lineHeight: "normal"
-        },
-        body2: {
-          fontFamily:
-            '"DM Sans", "Poppins", "Helvetica", "Roboto",  "Arial", sans-serif',
-        },
-        h3: {
-          fontFamily: 'Poppins, "Helvetica", "Roboto"',
-          fontSize: "1.5rem",
-        },
-        subtitle1: {
-          fontFamily:
-            '"DM Sans","Poppins", "Helvetica", "Roboto", "Arial", sans-serif',
-        },
-        body1: {
-          fontFamily:
-            '"DM Sans", "Poppins", "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
-        },
-        button: {
-          fontFamily:
-            '"DM Sans","Poppins", "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
-          fontWeight: 700,
-        },
-      },
     },
   },
   typography: {
     fontFamily:
-      '"Poppins",, "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
+      'Poppins, "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
     h1: {
       fontSize: "4rem",
       fontFamily: '"Poppins", "Helvetica", "Roboto"',
     },
     h2: {
       fontWeight: 600,
+      fontFamily: '"Poppins", "Helvetica", "Roboto"',
       fontSize: "2rem",
+      lineHeight: "normal",
     },
     body2: {
       fontFamily:
         '"DM Sans", "Poppins", "Helvetica", "Roboto",  "Arial", sans-serif',
     },
     h3: {
+      fontFamily: '"Poppins", "Helvetica", "Roboto"',
       fontSize: "1.5rem",
     },
     subtitle1: {
@@ -146,11 +142,11 @@ export const theme = createTheme({
     },
     body1: {
       fontFamily:
-        '"DM Sans", "Poppins",, "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
+        '"DM Sans", "Poppins", "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
     },
     button: {
       fontFamily:
-        '"DM Sans","Poppins",, "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
+        '"DM Sans","Poppins", "Helvetica", "Roboto", "DM Sans", "Arial", sans-serif',
       fontWeight: 700,
     },
   },

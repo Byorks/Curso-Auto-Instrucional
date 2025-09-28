@@ -1,4 +1,4 @@
-import { Box, Typography, Fade, Grid, Stack } from "@mui/material";
+import { Box, Typography, Fade, Grid, Stack, Container } from "@mui/material";
 import MainButton from "../../components/main_button/main_button";
 import videoBg from "../../assets/videos/spotify-jam.mp4";
 
@@ -58,45 +58,52 @@ export default function IndexPage() {
           },
         })}
       >
-        <Grid container>
-          <Stack spacing={4} columns={{ xs: 8, md: 12 }}>
-            <Fade in={"show"} timeout={1500}>
-              <Typography
-                variant="h3"
-                component="h1"
+        <Container maxWidth={ {sm:"xs" , md: "md"}}
+        sx={{ margin: "0 auto"}}>
+          <Grid container sx={{justifyContent: "center"}}>
+            <Stack spacing={4} columns={{ xs: 8, md: 12 }}>
+              <Fade in={"show"} timeout={1500}>
+                <Typography
+                  variant="h3"
+                  component="h1"
+                  sx={{
+                    fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3rem" },
+                    // É possível usar media queries
+                    "@media (max-width: 600px)": {
+                      fontSize: "2.5rem", // Tamanho menor em telas até 600px
+                    },
+                    fontWeight: "600",
+                    textAlign: "center",
+                  }}
+                >
+                  Como criar uma playlist temática no Spotify
+                </Typography>
+              </Fade>
+              <Box
+                variant="div"
                 sx={{
-                  fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3rem" },
-                  // É possível usar media queries
-                  "@media (max-width: 600px)": {
-                    fontSize: "2.5rem", // Tamanho menor em telas até 600px
+                  opacity: 0,
+                  animation: "fadeIn 1s forwards",
+                  animationDelay: "1s", // espera 1s antes de começar
+                  "@keyframes fadeIn": {
+                    from: { opacity: 0 },
+                    to: { opacity: 1 },
                   },
-                  fontWeight: "600",
-                  textAlign: "center",
+                  display: "flex",
+                  justifyContent: "center",
                 }}
               >
-                Como criar uma playlist temática no Spotify
-              </Typography>
-            </Fade>
-            <Box
-              variant="div"
-              sx={{
-                opacity: 0,
-                animation: "fadeIn 1s forwards",
-                animationDelay: "1s", // espera 1s antes de começar
-                "@keyframes fadeIn": {
-                  from: { opacity: 0 },
-                  to: { opacity: 1 },
-                },
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <MainButton path={"/modules"} color="primary" variant="contained">
-                Bora iniciar
-              </MainButton>
-            </Box>
-          </Stack>
-        </Grid>
+                <MainButton
+                  path={"/modules"}
+                  color="primary"
+                  variant="contained"
+                >
+                  Bora iniciar
+                </MainButton>
+              </Box>
+            </Stack>
+          </Grid>
+        </Container>
       </Box>
     </Box>
   );
