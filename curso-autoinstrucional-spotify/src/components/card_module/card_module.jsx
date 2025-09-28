@@ -11,7 +11,7 @@ import { Link } from "react-router-dom"
 export default function CardModule ( {id, title, description, imgpath} ) {
     return (
         <Link to={`/modules/${id}`}>
-            <Card sx={{display: "flex", width: "100%", height: "15vh", cursor: "pointer"}}>
+            <Card sx={{display: "flex", width: "100%", height: "18vh", cursor: "pointer"}}>
                 <CardMedia component="img" image={imgpath}
                     sx={{
                         width: "30%"

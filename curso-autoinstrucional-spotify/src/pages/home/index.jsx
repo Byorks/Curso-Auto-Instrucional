@@ -1,4 +1,4 @@
-import { Box, Typography, Fade } from "@mui/material";
+import { Box, Typography, Fade, Grid, Stack } from "@mui/material";
 import MainButton from "../../components/main_button/main_button";
 import videoBg from "../../assets/videos/spotify-jam.mp4";
 
@@ -29,7 +29,7 @@ export default function IndexPage() {
           height: "100%",
           objectFit: "cover",
           zIndex: -2,
-          opacity: 0.7,
+          opacity: 1,
         })}
       ></Box>
       <Box
@@ -43,7 +43,7 @@ export default function IndexPage() {
           justifyContent: "center",
           height: "100%",
           gap: 2,
-          //   bgcolor: "rgba(0,0,0,0.4)", // overlay escuro
+          // bgcolor: "rgba(0,0,0,0.4)", // overlay escuro
 
           "&::before": {
             content: '""',
@@ -52,40 +52,51 @@ export default function IndexPage() {
             left: 0,
             width: "100%",
             height: "100%",
-            opacity: 1,
+            opacity: 0.4,
             zIndex: -1,
             bgcolor: theme.palette.marian_blue.main,
           },
         })}
       >
-        <Fade in={"show"} timeout={1500}>
-          <Typography
-            variant="h3"
-            component="h1"
-            sx={{
-              fontWeight: "600",
-              textAlign: "center",
-            }}
-          >
-            Como criar uma playlist temática no Spotify{" "}
-          </Typography>
-        </Fade>
-        <Box
-          variant="div"
-          sx={{
-            opacity: 0,
-            animation: "fadeIn 1s forwards",
-            animationDelay: "1s", // espera 1s antes de começar
-            "@keyframes fadeIn": {
-              from: { opacity: 0 },
-              to: { opacity: 1 },
-            },
-          }}
-        >
-          <MainButton path={"/modules"} color="emerald" variant="contained">
-            Bora começar esse Curso
-          </MainButton>
-        </Box>
+        <Grid container>
+          <Stack spacing={4} columns={{ xs: 8, md: 12 }}>
+            <Fade in={"show"} timeout={1500}>
+              <Typography
+                variant="h3"
+                component="h1"
+                sx={{
+                  fontSize: { xs: "1.8rem", sm: "2.5rem", md: "3rem" },
+                  // É possível usar media queries
+                  "@media (max-width: 600px)": {
+                    fontSize: "2.5rem", // Tamanho menor em telas até 600px
+                  },
+                  fontWeight: "600",
+                  textAlign: "center",
+                }}
+              >
+                Como criar uma playlist temática no Spotify
+              </Typography>
+            </Fade>
+            <Box
+              variant="div"
+              sx={{
+                opacity: 0,
+                animation: "fadeIn 1s forwards",
+                animationDelay: "1s", // espera 1s antes de começar
+                "@keyframes fadeIn": {
+                  from: { opacity: 0 },
+                  to: { opacity: 1 },
+                },
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <MainButton path={"/modules"} color="primary" variant="contained">
+                Bora iniciar
+              </MainButton>
+            </Box>
+          </Stack>
+        </Grid>
       </Box>
     </Box>
   );

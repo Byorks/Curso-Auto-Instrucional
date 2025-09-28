@@ -1,5 +1,6 @@
 import Class from "../../../components/class/class";
 import { Typography, Box, styled } from "@mui/material";
+
 const Paragraph = styled("p")(({ theme }) => ({
   ...theme.typography.body1,
   padding: theme.spacing(1),
