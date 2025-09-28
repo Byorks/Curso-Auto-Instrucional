@@ -161,6 +161,7 @@ export default function SingleChoiceEx({ question }) {
             {question.id.toString()} - {question.title}
           </FormLabel>
           <RadioGroup
+            sx={{ textAlign: "left",}}
             value={optionSelected}
             onChange={(e) => setOptionSelected(e.target.value)}
           >

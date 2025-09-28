@@ -4,6 +4,7 @@ import MultipleChoiceEx from "../../../components/exercises/multiple_choice";
 import { Typography, Grid, Skeleton, List, ListItem, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
+import HeaderNav from "../../../components/header/header";
 // import classDrawer from "../../../components/classDrawer";
 
 const Paragraph = styled("p")(({ theme }) => ({
@@ -46,143 +47,14 @@ export default function Class1() {
     fetchQuestions();
   }, []);
 
-  // Dados mockados
-  // let data = {
-  //   items: [
-  //     {
-  //       id: 1,
-  //       type: "multiple",
-  //       title: "Pergunta 1",
-  //       correct_answer: [2, 5],
-  //       options: [
-  //         {
-  //           id: 1,
-  //           label: "Alternativa A",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 2,
-  //           label: "Alternativa B",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 3,
-  //           label: "Alternativa C",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 4,
-  //           label: "Alternativa D",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 5,
-  //           label: "Alternativa E",
-  //           feedback: "",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       id: 2,
-  //       type: "single",
-  //       title: "Pergunta 2",
-  //       correct_answer: [3],
-  //       options: [
-  //         {
-  //           id: 1,
-  //           label: "Alternativa A",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 2,
-  //           label: "Alternativa B",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 3,
-  //           label: "Alternativa C",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 4,
-  //           label: "Alternativa D",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 5,
-  //           label: "Alternativa E",
-  //           feedback: "",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       id: 3,
-  //       type: "single",
-  //       title: "Pergunta 2",
-  //       correct_answer: [3],
-  //       options: [
-  //         {
-  //           id: 1,
-  //           label: "Alternativa A",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 2,
-  //           label: "Alternativa B",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 3,
-  //           label: "Alternativa C",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 4,
-  //           label: "Alternativa D",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 5,
-  //           label: "Alternativa E",
-  //           feedback: "",
-  //         },
-  //       ],
-  //     },
-  //     {
-  //       id: 4,
-  //       type: "combo",
-  //       title: "Pergunta 3",
-  //       correct_answer: [1, 3],
-  //       options: [
-  //         {
-  //           id: 1,
-  //           label: "Alternativa A",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 2,
-  //           label: "Alternativa B",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 3,
-  //           label: "Alternativa C",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 4,
-  //           label: "Alternativa D",
-  //           feedback: "",
-  //         },
-  //         {
-  //           id: 5,
-  //           label: "Alternativa E",
-  //           feedback: "",
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // };
+  const StyledArticle = styled(Box)(({ theme }) => ({
+    borderRadius: "1rem",
+    background: "linear-gradient(180deg, #1E3B8A 0%, #282C35 12.5%)",
+    padding: "1rem",
+    [theme.breakpoints.up("md")]: {
+      padding: "2rem",
+    },
+  }));
 
   let singleQuestions = questions.filter((q) => q.type == "single");
   let multiQuestions = questions.filter((q) => q.type == "multiple");
@@ -190,12 +62,13 @@ export default function Class1() {
   let coverImg = "https://images2.alphacoders.com/109/thumb-1920-1093974.jpg";
   return (
     <Class cover={coverImg} title={"O que é e como planejar"}>
-      <article>
-        <Typography className="py-5" variant="h2" component="h1" gutterBottom>
+      
+      <StyledArticle>
+        {/* <Typography className="py-5" variant="h2" component="h1" gutterBottom>
           O que é e como planejar
-        </Typography>
+        </Typography> */}
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2">
             Objetivo
           </Typography>
 
@@ -206,7 +79,7 @@ export default function Class1() {
         </section>
 
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2">
             O que é uma playlist temática?
           </Typography>
           <Typography component="p" variant="body1" sx={{ padding: 1 }}>
@@ -239,7 +112,7 @@ export default function Class1() {
         </section>
 
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2">
             Por que escolher um tema?
           </Typography>
           <Paragraph>
@@ -276,7 +149,7 @@ export default function Class1() {
         </section>
 
         <section className="py-4">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2">
             Bora praticar
           </Typography>
 
@@ -286,17 +159,17 @@ export default function Class1() {
             sx={{ justifyContent: "center", alignContent: "center" }}
           >
             <Grid size={{ xs: 8, md: 8 }} spacing={4}>
-            {loading ? (
-              <Skeleton animation="wave" width="100%" height="300px" />
-            ) : (
-              singleQuestions.map((q) => (
+              {loading ? (
+                <Skeleton animation="wave" width="100%" height="300px" />
+              ) : (
+                singleQuestions.map((q) => (
                   <section className="py-5 w-full">
                     <Item>
                       <SingleChoiceEx key={q.id} question={q} />
                     </Item>
                   </section>
-              ))
-            )}
+                ))
+              )}
             </Grid>
           </Grid>
 
@@ -320,7 +193,7 @@ export default function Class1() {
             </Grid>
           </Grid>
         </section>
-      </article>
+      </StyledArticle>
     </Class>
   );
 }

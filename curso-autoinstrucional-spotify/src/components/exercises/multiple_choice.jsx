@@ -176,7 +176,7 @@ export default function MultipleChoiceEx({ question }) {
           >
             {question.id} - {question.title}
           </FormLabel>
-          <FormGroup>
+          <FormGroup sx={{ textAlign: "left",}}>
             {question.options.map((option) => (
               <FormControlLabel
                 id={option.id}
