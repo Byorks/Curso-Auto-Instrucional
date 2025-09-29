@@ -66,30 +66,6 @@ const frenchGrayMain = alpha(frenchGrayBase, 0.7);
 
 export const theme = createTheme({
   colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: emerald[300],
-          light: emerald[100],
-          dark: emerald[700],
-          contrastText: "rgba(0, 0, 0, 0.87)",
-          ...emerald,
-        },
-        secondary: {
-          main: gray[100],
-          light: gray[800],
-          dark: gray[100],
-          contrastText: "rgba(0, 0, 0, 0.87)",
-          ...gray,
-        },
-        marian_blue: {
-          main: marianBlue[800],
-          light: marianBlue[600],
-          dark: marianBlue[900],
-          contrastText: "#fff",
-        },
-      },
-    },
     dark: {
       palette: {
         primary: {
@@ -111,6 +87,30 @@ export const theme = createTheme({
           light: marianBlue[600],
           dark: marianBlue[900],
           ...marianBlue,
+          contrastText: "#fff",
+        },
+      },
+    },
+    light: {
+      palette: {
+        primary: {
+          main: emerald[300],
+          light: emerald[100],
+          dark: emerald[700],
+          contrastText: "rgba(0, 0, 0, 0.87)",
+          ...emerald,
+        },
+        secondary: {
+          main: gray[100],
+          light: gray[800],
+          dark: gray[100],
+          contrastText: "rgba(0, 0, 0, 0.87)",
+          ...gray,
+        },
+        marian_blue: {
+          main: marianBlue[800],
+          light: marianBlue[600],
+          dark: marianBlue[900],
           contrastText: "#fff",
         },
       },

@@ -1,6 +1,7 @@
 import { Box, Typography, Fade, Grid, Stack, Container } from "@mui/material";
 import MainButton from "../../components/main_button/main_button";
 import videoBg from "../../assets/videos/spotify-jam.mp4";
+import videoPoster from "../../assets/imgs/video-bg.png"
 
 export default function IndexPage() {
   return (
@@ -15,7 +16,8 @@ export default function IndexPage() {
       //   className="flex items-center justify-center h-dvh flex-col gap-5"
     >
       <Box
-        component="video"
+        poster={videoPoster}
+        component={"video"}
         src={videoBg}
         autoPlay
         loop

@@ -27,6 +27,7 @@ const Item = styled("div")(({ theme }) => ({
 }));
 
 export default function Class1() {
+  // TODO -> Fazer um hook para pegar os exercícios
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState([]);
 

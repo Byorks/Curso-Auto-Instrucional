@@ -80,7 +80,7 @@ const StyledGrid = styled(Grid)(({ theme }) => ({
 
 export default function ModulesPage() {
   const [load, setLoad] = useState(true);
- 
+
   return (
     <MainContainer variant="main">
       <Box
@@ -102,15 +102,23 @@ export default function ModulesPage() {
           </Typography>
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {MODULESCARD.map((card, i) => (
-              <Slide key={card.id} direction="left" in={load} unmountOnExit timeout={1000 / (i + 1) / 1.5}>
+              <Slide
+                key={card.id}
+                direction="left"
+                in={load}
+                unmountOnExit
+                timeout={1000 / (i + 1) / 1.5}
+              >
                 <div>
-                  <CardModule  {...card} />
+                  <CardModule {...card} />
                 </div>
               </Slide>
             ))}
           </Grid>
         </StyledGrid>
-        <ToggleColorMode />
+        <Box sx={{width: "100%", display: "flex", justifyContent: "center", paddingTop: "12px"}}>
+          <ToggleColorMode />
+        </Box>
       </Box>
     </MainContainer>
   );

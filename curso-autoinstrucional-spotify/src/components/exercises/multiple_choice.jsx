@@ -201,7 +201,7 @@ export default function MultipleChoiceEx({ question }) {
                 {...(showCorrectAn ? { timeout: 500 } : {})}
               >
                 <Paper sx={{ padding: "12px" }} variant="outlined">
-                  <Typography>As alternativas corretas são:</Typography>
+                  <Typography align="left">As alternativas corretas são:</Typography>
                   <List>
                     {correctAlternative.map((option) => (
                       <ListItem key={option.id}>{option.label}</ListItem>

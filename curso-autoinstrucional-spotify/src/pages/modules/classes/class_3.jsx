@@ -1,13 +1,52 @@
 import Class from "../../../components/class/class";
-import { Typography, Box, styled } from "@mui/material";
+import { Typography, Box, styled, Grid, Skeleton } from "@mui/material";
 import StyledArticle from "../../../components/styled_article";
+import { useState, useEffect } from "react";
+import MultipleChoiceEx from "../../../components/exercises/multiple_choice";
+import SingleChoiceEx from "../../../components/exercises/single_choice";
 
 const Paragraph = styled("p")(({ theme }) => ({
   ...theme.typography.body1,
   padding: theme.spacing(1),
 }));
 
+const Item = styled("div")(({ theme }) => ({
+  backgroundColor: "#fff",
+  border: "1px solid",
+  borderColor: "#ced7e0",
+  padding: theme.spacing(1),
+  borderRadius: "4px",
+  textAlign: "center",
+  ...theme.applyStyles("dark", {
+    backgroundColor: "#1A2027",
+    borderColor: "#444d58",
+  }),
+}));
+
 export default function Class3() {
+  const [loading, setLoading] = useState(true);
+  const [questions, setQuestions] = useState([]);
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const res = await fetch(
+          "https://python-apis-learn.onrender.com/json?filename=questions_3.json"
+        );
+        const data = await res.json();
+        setQuestions(data.items);
+        setLoading(false);
+      } catch (error) {
+        console.error("Request error:", error);
+        setLoading(false);
+      }
+    };
+
+    fetchQuestions();
+  }, []);
+
+  let singleQuestions = questions.filter((q) => q.type == "single");
+  let multiQuestions = questions.filter((q) => q.type == "multiple");
   let cover3 =
     "https://p0.piqsels.com/preview/473/1013/227/netherlands-neede-galaxy-s8.jpg";
   return (
@@ -182,6 +221,50 @@ export default function Class3() {
               </li>
             </Box>
           </section>
+        </section>
+        <section className="py-4">
+          <Typography variant="h2" component="h2">
+            Bora praticar
+          </Typography>
+
+          <Grid
+            container
+            columns={{ xs: 8, md: 12 }}
+            sx={{ justifyContent: "center", alignContent: "center" }}
+          >
+            <Grid
+              container
+              columns={{ xs: 8, md: 12 }}
+              sx={{ justifyContent: "center", alignContent: "center" }}
+            >
+              <Grid size={{ xs: 8, md: 8 }}>
+                {loading ? (
+                  <Skeleton animation="wave" width="100%" height="300px" />
+                ) : (
+                  multiQuestions.map((q) => (
+                    <section className="py-5 w-full">
+                      <Item>
+                        <MultipleChoiceEx key={q.id} question={q} />
+                      </Item>
+                    </section>
+                  ))
+                )}
+              </Grid>
+              <Grid size={{ xs: 8, md: 8 }} spacing={4}>
+                {loading ? (
+                  <Skeleton animation="wave" width="100%" height="300px" />
+                ) : (
+                  singleQuestions.map((q) => (
+                    <section className="py-5 w-full">
+                      <Item>
+                        <SingleChoiceEx key={q.id} question={q} />
+                      </Item>
+                    </section>
+                  ))
+                )}
+              </Grid>
+            </Grid>
+          </Grid>
         </section>
       </StyledArticle>
     </Class>
