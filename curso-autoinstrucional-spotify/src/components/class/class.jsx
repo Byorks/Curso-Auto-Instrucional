@@ -2,8 +2,7 @@ import { Box, Typography, styled } from "@mui/material";
 import HeaderNav from "../header/header";
 
 const StyledMain = styled(Box)(({ theme }) => ({
-  backgroundColor: theme.palette.secondary[1000]
-  
+  backgroundColor: theme.palette.secondary.dark
 }));
 
 export default function Class({ cover, children, title }) {

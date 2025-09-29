@@ -5,6 +5,7 @@ import { Typography, Grid, Skeleton, List, ListItem, Box } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import HeaderNav from "../../../components/header/header";
+import StyledArticle from "../../../components/styled_article";
 // import classDrawer from "../../../components/classDrawer";
 
 const Paragraph = styled("p")(({ theme }) => ({
@@ -47,22 +48,12 @@ export default function Class1() {
     fetchQuestions();
   }, []);
 
-  const StyledArticle = styled(Box)(({ theme }) => ({
-    borderRadius: "1rem",
-    background: "linear-gradient(180deg, #1E3B8A 0%, #282C35 12.5%)",
-    padding: "1rem",
-    [theme.breakpoints.up("md")]: {
-      padding: "2rem",
-    },
-  }));
-
   let singleQuestions = questions.filter((q) => q.type == "single");
   let multiQuestions = questions.filter((q) => q.type == "multiple");
   console.log(singleQuestions);
   let coverImg = "https://images2.alphacoders.com/109/thumb-1920-1093974.jpg";
   return (
     <Class cover={coverImg} title={"O que é e como planejar"}>
-      
       <StyledArticle>
         {/* <Typography className="py-5" variant="h2" component="h1" gutterBottom>
           O que é e como planejar

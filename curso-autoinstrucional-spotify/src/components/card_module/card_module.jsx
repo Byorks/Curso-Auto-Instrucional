@@ -21,7 +21,7 @@ const StyledLink = styled(Link)(({theme}) => ({
 
 export default function CardModule({ id, title, description, imgpath }) {
   return (
-    <StyledLink to={`/modules/${id}`}>
+    <StyledLink relative="" to={`${id}`}>
       <Card
         sx={(theme) =>({
           display: "flex",
@@ -33,7 +33,7 @@ export default function CardModule({ id, title, description, imgpath }) {
           boxShadow: "none",
           transition: "background-color .3s ease-in-out, transform .15s ease-out",
           "&:hover": {
-            backgroundColor: theme.palette.secondary[800],
+            backgroundColor: theme.palette.secondary.main,
             border: `.2px solid ${theme.palette.secondary[400]}`,
             transform: "scale(1.02)",
           }

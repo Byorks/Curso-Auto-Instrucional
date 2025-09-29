@@ -1,5 +1,6 @@
 import Class from "../../../components/class/class";
 import { Typography, Box, styled } from "@mui/material";
+import StyledArticle from "../../../components/styled_article";
 
 const Paragraph = styled("p")(({ theme }) => ({
   ...theme.typography.body1,
@@ -10,14 +11,10 @@ export default function Class2() {
   let coverImg2 =
     "https://applescoop.org/image/wallpapers/mac/spotify-app-store-music-creative-gradient-28-10-2024-1730155583-hd-wallpaper.webp";
   return (
-    <Class cover={coverImg2}>
-      <article>
-        <Typography variant="h2" component="h1" gutterBottom>
-          Criando no Spotify
-        </Typography>
-
+    <Class title={"Criando no Spotify"} cover={coverImg2}>
+      <StyledArticle>
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Objetivo
           </Typography>
 
@@ -28,13 +25,13 @@ export default function Class2() {
         </section>
 
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Criando sua playlist
           </Typography>
           <Paragraph>No celular:</Paragraph>
           <Box
             component="ol"
-            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>Abra o Spotify.</li>
             <li>
@@ -48,7 +45,7 @@ export default function Class2() {
           <Paragraph>No computador:</Paragraph>
           <Box
             component="ol"
-            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>Abra o Spotify no app ou navegador.</li>
             <li>
@@ -62,14 +59,14 @@ export default function Class2() {
         </section>
 
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Personalizando
           </Typography>
 
           <Paragraph>Uma playlist bem feita tem:</Paragraph>
           <Box
             component="ul"
-            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>
               <strong>Nome criativo</strong>: curto, memorável e com emoção.
@@ -92,11 +89,9 @@ export default function Class2() {
             <strong>a sensação antes mesmo da pessoa dar play</strong>.
           </Paragraph>
         </section>
-      </article>
 
-      <article>
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Como adicionar músicas de forma estratégica em sua playlist
           </Typography>
           <Paragraph>
@@ -108,7 +103,7 @@ export default function Class2() {
           </Paragraph>
         </section>
         <section className="py-5 m-2">
-          <Typography variant="h5" component="h3">
+          <Typography variant="h3" component="h3" gutterBottom>
             1. Busque de diferentes formas
           </Typography>
           <Paragraph>
@@ -116,7 +111,7 @@ export default function Class2() {
           </Paragraph>
           <Box
             component="ul"
-            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>
               <strong>Nome da música</strong>: quando já sabe exatamente o que
@@ -138,7 +133,7 @@ export default function Class2() {
         </section>
 
         <section className="py-5 m-2">
-          <Typography variant="h5" component="h3">
+          <Typography variant="h3" component="h3" gutterBottom>
             2. Mantenha a coerência do tema
           </Typography>
 
@@ -149,8 +144,9 @@ export default function Class2() {
             pode causar estranhamento e atrapalhar a experiência.
           </Paragraph>
         </section>
+
         <section className="py-5 m-2">
-          <Typography variant="h5" component="h3">
+          <Typography variant="h3" component="h3" gutterBottom>
             3. Organize a ordem das músicas
           </Typography>
           <Paragraph>
@@ -159,7 +155,7 @@ export default function Class2() {
           </Paragraph>
           <Box
             component="ul"
-            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>
               <strong>Início suave e progressivo</strong>: comece com músicas
@@ -175,11 +171,9 @@ export default function Class2() {
             decide como essa narrativa será percebida.
           </Paragraph>
         </section>
-      </article>
 
-      <article>
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Atividade prática: construindo sua primeira playlist estratégica
           </Typography>
           <Paragraph>
@@ -188,91 +182,114 @@ export default function Class2() {
             <strong>experimente o processo criativo</strong> de montar uma
             playlist e perceba como pequenos ajustes fazem diferença.
           </Paragraph>
-          <Typography variant="h5" component="h3">
-            Passo a passo da atividade
-          </Typography>
-          <Box
-            component="ol"
-            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "8px" }}
-          >
-            <li>
-              <strong>Crie sua playlist no Spotify</strong>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  pl: 4,
-                  display: "grid",
-                  gap: "8px",
-                }}
-              >
-                <li>O título deve transmitir a essência (ex.: Energia para treinar, Relaxamento ao pôr do sol).</li>
-                <li>A descrição pode complementar, explicando a intenção ou o clima.</li>
-              </Box>
-            </li>
-            <li>
-              <strong>Nomeie e descreva de forma criativa</strong>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  pl: 4,
-                  display: "grid",
-                  gap: "8px",
-                }}
-              >
-                <li>O título deve transmitir a essência (ex.: Energia para treinar, Relaxamento ao pôr do sol).</li>
-                <li>A descrição pode complementar, explicando a intenção ou o clima.</li>
-              </Box>
-            </li>
-            <li>
-              <strong>Crie uma capa personalizada</strong>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  pl: 4,
-                  display: "grid",
-                  gap: "8px",
-                }}
-              >
-                <li>Use imagens que representem o estilo musical ou a emoção da playlist.</li>
-                <li>Essa identidade visual ajuda a destacar sua curadoria.</li>
-              </Box>
-            </li>
-            <li>
-              <strong>Adicione 10 músicas que combinem entre si</strong>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  pl: 4,
-                  display: "grid",
-                  gap: "8px",
-                }}
-              >
-                <li>Teste diferentes combinações até encontrar a harmonia.</li>
-              </Box>
-            </li>
-            <li>
-              <strong>Teste a ordem e ajuste se necessário</strong>
-              <Box
-                component="ul"
-                sx={{
-                  listStyleType: "disc",
-                  pl: 4,
-                  display: "grid",
-                  gap: "8px",
-                }}
-              >
-                <li>Escute sua playlist em sequência.</li>
-                <li>Se alguma música “quebrar a vibe”, troque de lugar ou substitua.</li>
-              </Box>
-            </li>
-           
-          </Box>
+          <section className="py-3">
+            <Typography variant="h3" component="h3" gutterBottom>
+              Passo a passo da atividade
+            </Typography>
+            <Box
+              component="ol"
+              sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "16px" }}
+            >
+              <li>
+                <strong>Crie sua playlist no Spotify</strong>
+                <Box
+                  component="ul"
+                  sx={{
+                    listStyleType: "disc",
+                    pl: 4,
+                    display: "grid",
+                    gap: "4px",
+                  }}
+                >
+                  <li>
+                    O título deve transmitir a essência (ex.: Energia para
+                    treinar, Relaxamento ao pôr do sol).
+                  </li>
+                  <li>
+                    A descrição pode complementar, explicando a intenção ou o
+                    clima.
+                  </li>
+                </Box>
+              </li>
+              <li>
+                <strong>Nomeie e descreva de forma criativa</strong>
+                <Box
+                  component="ul"
+                  sx={{
+                    listStyleType: "disc",
+                    pl: 4,
+                    display: "grid",
+                    gap: "4px",
+                  }}
+                >
+                  <li>
+                    O título deve transmitir a essência (ex.: Energia para
+                    treinar, Relaxamento ao pôr do sol).
+                  </li>
+                  <li>
+                    A descrição pode complementar, explicando a intenção ou o
+                    clima.
+                  </li>
+                </Box>
+              </li>
+              <li>
+                <strong>Crie uma capa personalizada</strong>
+                <Box
+                  component="ul"
+                  sx={{
+                    listStyleType: "disc",
+                    pl: 4,
+                    display: "grid",
+                    gap: "4px",
+                  }}
+                >
+                  <li>
+                    Use imagens que representem o estilo musical ou a emoção da
+                    playlist.
+                  </li>
+                  <li>
+                    Essa identidade visual ajuda a destacar sua curadoria.
+                  </li>
+                </Box>
+              </li>
+              <li>
+                <strong>Adicione 10 músicas que combinem entre si</strong>
+                <Box
+                  component="ul"
+                  sx={{
+                    listStyleType: "disc",
+                    pl: 4,
+                    display: "grid",
+                    gap: "4px",
+                  }}
+                >
+                  <li>
+                    Teste diferentes combinações até encontrar a harmonia.
+                  </li>
+                </Box>
+              </li>
+              <li>
+                <strong>Teste a ordem e ajuste se necessário</strong>
+                <Box
+                  component="ul"
+                  sx={{
+                    listStyleType: "disc",
+                    pl: 4,
+                    display: "grid",
+                    gap: "4px",
+                  }}
+                >
+                  <li>Escute sua playlist em sequência.</li>
+                  <li>
+                    Se alguma música “quebrar a vibe”, troque de lugar ou
+                    substitua.
+                  </li>
+                </Box>
+              </li>
+            </Box>
+          </section>
         </section>
-      </article>
+      </StyledArticle>
     </Class>
   );
 }

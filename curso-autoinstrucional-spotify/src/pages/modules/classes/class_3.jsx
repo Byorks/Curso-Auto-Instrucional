@@ -1,5 +1,6 @@
 import Class from "../../../components/class/class";
 import { Typography, Box, styled } from "@mui/material";
+import StyledArticle from "../../../components/styled_article";
 
 const Paragraph = styled("p")(({ theme }) => ({
   ...theme.typography.body1,
@@ -10,21 +11,23 @@ export default function Class3() {
   let cover3 =
     "https://p0.piqsels.com/preview/473/1013/227/netherlands-neede-galaxy-s8.jpg";
   return (
-    <Class cover={cover3}>
-      <article>
-        <Typography variant="h2" component="h1" gutterBottom>
-          Compartilhar e manter sua playlist
-        </Typography>
-        <Paragraph>
-          Compartilhar sua playlist é uma forma de mostrar seu estilo, se
-          conectar com amigos e até ganhar seguidores que gostam da mesma vibe
-          musical que você. Além disso, uma playlist não precisa ser estática:
-          com pequenas atualizações, ela pode continuar relevante e atrativa ao
-          longo do tempo.
-        </Paragraph>
+    <Class title={"Compartilhar e manter sua playlist"} cover={cover3}>
+      <StyledArticle>
+        <section className="py-5 m-2">
+          <Typography variant="h2" component="h2" gutterBottom>
+            Objetivo
+          </Typography>
+          <Paragraph>
+            Compartilhar sua playlist é uma forma de mostrar seu estilo, se
+            conectar com amigos e até ganhar seguidores que gostam da mesma vibe
+            musical que você. Além disso, uma playlist não precisa ser estática:
+            com pequenas atualizações, ela pode continuar relevante e atrativa
+            ao longo do tempo.
+          </Paragraph>
+        </section>
 
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Como compartilhar sua playlist
           </Typography>
 
@@ -33,13 +36,15 @@ export default function Class3() {
             você precisa divulgá-la. O Spotify oferece diferentes formas de
             compartilhamento tanto no celular quanto no computador.
           </Paragraph>
+        </section>
 
-          <Typography variant="h5" component="h3">
+        <section className="py-5 m-2">
+          <Typography variant="h3" component="h3" gutterBottom>
             No celular
           </Typography>
           <Box
             component="ol"
-            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>Abra sua playlist.</li>
             <li>Toque nos três pontinhos (⋮).</li>
@@ -51,13 +56,14 @@ export default function Class3() {
               <em>Copiar link, WhatsApp, Instagram Stories, Twitter…</em>.
             </li>
           </Box>
-
-          <Typography variant="h5" component="h3">
+        </section>
+        <section className="py-5 m-2">
+          <Typography variant="h3" component="h3" gutterBottom>
             No computador
           </Typography>
           <Box
             component="ol"
-            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>Clique com o botão direito na playlist.</li>
             <li>
@@ -72,10 +78,9 @@ export default function Class3() {
             capa personalizada, tornando a divulgação mais bonita e chamativa.
           </Paragraph>
         </section>
-      </article>
-      <article>
+
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Playlists colaborativas
           </Typography>
           <Paragraph>
@@ -85,7 +90,7 @@ export default function Class3() {
           </Paragraph>
           <Box
             component="ul"
-            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>As playlists colaborativas são vivas, sempre se renovando.</li>
             <li>
@@ -98,10 +103,9 @@ export default function Class3() {
             </li>
           </Box>
         </section>
-      </article>
-      <article>
+
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Como manter sua playlist viva
           </Typography>
           <Paragraph>
@@ -110,7 +114,7 @@ export default function Class3() {
           </Paragraph>
           <Box
             component="ol"
-            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "8px" }}
+            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "16px" }}
           >
             <li>
               <strong>Atualize regularmente</strong> – troque ou adicione
@@ -130,47 +134,56 @@ export default function Class3() {
             </li>
           </Box>
         </section>
-      </article>
-      <article>
+
         <section className="py-5 m-2">
-          <Typography variant="h4" component="h2">
+          <Typography variant="h2" component="h2" gutterBottom>
             Atividade prática: compartilhando e atualizando
           </Typography>
           <Paragraph>
-           Para fixar o aprendizado, você vai realizar uma atividade simples e prática:
+            Para fixar o aprendizado, você vai realizar uma atividade simples e
+            prática:
           </Paragraph>
 
-          <Typography variant="h5" component="h3">
-            Passo a passo
-          </Typography>
-          <Box
-            component="ol"
-            sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "8px" }}
-          >
-            <li>
-              <strong>Compartilhe sua playlist</strong> com pelo menos uma pessoa.
-            </li>
-            <li>
-              <strong>Peça uma sugestão de música</strong> para adicionar.
-            </li>
-            <li>
-             <strong>Inclua essa música</strong>, se fizer sentido para a vibe da playlist.
-            </li>
-          </Box>
-          <Paragraph>
-            ✅ Ao final, você terá:
-          </Paragraph>
-          <Box
-            component="ul"
-            sx={{ listStyleType: "disc", pl: 4, display: "grid", gap: "8px" }}
-          >
-            <li>Uma playlist publicada e acessível.</li>
-            <li>Uma primeira interação real com outra pessoa.</li>
-            <li><strong>Um plano de atualização contínua</strong> para mantê-la viva.</li>
-          </Box>
-
+          <section className="py-4">
+            <Typography variant="h3" component="h3" gutterBottom>
+              Passo a passo
+            </Typography>
+            <Box
+              component="ol"
+              sx={{ listStyleType: "num", pl: 4, display: "grid", gap: "16px" }}
+            >
+              <li>
+                <strong>Compartilhe sua playlist</strong> com pelo menos uma
+                pessoa.
+              </li>
+              <li>
+                <strong>Peça uma sugestão de música</strong> para adicionar.
+              </li>
+              <li>
+                <strong>Inclua essa música</strong>, se fizer sentido para a
+                vibe da playlist.
+              </li>
+            </Box>
+            <Paragraph>✅ Ao final, você terá:</Paragraph>
+            <Box
+              component="ul"
+              sx={{
+                listStyleType: "disc",
+                pl: 4,
+                display: "grid",
+                gap: "16px",
+              }}
+            >
+              <li>Uma playlist publicada e acessível.</li>
+              <li>Uma primeira interação real com outra pessoa.</li>
+              <li>
+                <strong>Um plano de atualização contínua</strong> para mantê-la
+                viva.
+              </li>
+            </Box>
+          </section>
         </section>
-      </article>
+      </StyledArticle>
     </Class>
   );
 }

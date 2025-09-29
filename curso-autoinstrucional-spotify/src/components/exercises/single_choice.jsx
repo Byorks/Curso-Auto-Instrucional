@@ -101,7 +101,7 @@ export default function SingleChoiceEx({ question }) {
       attemptQuestions += 1;
       setAttempts(attemptQuestions);
 
-      if (attemptQuestions >= 3) {
+      if (attemptQuestions > 3) {
         disable = true;
         correct = false;
         setDisableInputs(disable);
@@ -185,7 +185,7 @@ export default function SingleChoiceEx({ question }) {
                 {...(showCorrectAn ? { timeout: 500 } : {})}
               >
                 <Paper sx={{ padding: "12px"}} variant="outlined">
-                  <Typography align="left">A alternativas correta é:</Typography>
+                  <Typography align="left">A alternativa correta é:</Typography>
                   <List>
                     <ListItem>{showCorrectAn}</ListItem>
                   </List>

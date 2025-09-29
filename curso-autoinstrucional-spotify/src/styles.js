@@ -77,8 +77,8 @@ export const theme = createTheme({
         },
         secondary: {
           main: gray[100],
-          light: gray[50],
-          dark: gray[900],
+          light: gray[800],
+          dark: gray[100],
           contrastText: "rgba(0, 0, 0, 0.87)",
           ...gray,
         },
@@ -93,9 +93,9 @@ export const theme = createTheme({
     dark: {
       palette: {
         primary: {
-          main: emerald[600],
+          main: emerald[300],
           light: emerald[100],
-          dark: emerald[700],
+          dark: emerald[300],
           contrastText: "rgba(0, 0, 0, 0.87)",
           ...emerald,
         },
@@ -110,6 +110,7 @@ export const theme = createTheme({
           main: marianBlue[800],
           light: marianBlue[600],
           dark: marianBlue[900],
+          ...marianBlue,
           contrastText: "#fff",
         },
       },
@@ -150,81 +151,4 @@ export const theme = createTheme({
       fontWeight: 700,
     },
   },
-
-  // palette: { // Pallete está sendo substituída, nesse caso vai substituir o que foi colocado em colorSchemes
-  //   primary: {
-  //     main: marianBlueBase,
-  //   },
-  //   french_gray: {
-  //     main: frenchGrayMain,
-  //     light: alpha(frenchGrayBase, 0.5),
-  //     dark: alpha(frenchGrayBase, 0.9),
-  //     bgcolor: alpha(frenchGrayBase, 0.3),
-  //     contrastText:
-  //       getContrastRatio(frenchGrayMain, "#fff") > 4.5 ? "#fff" : "#111",
-  //   },
-  //   emerald: {
-  //     main: emeraldMain,
-  //     light: alpha(emeraldBase, 0.5),
-  //     dark: alpha(emeraldBase, 0.9),
-  //     contrastText:
-  //       getContrastRatio(emeraldMain, "#fff") > 4.5 ? "#fff" : "#111",
-  //   },
-  //   marian_blue: {
-  //     main: marianBlueMain,
-  //     light: alpha(marianBlueBase, 0.5),
-  //     dark: alpha(marianBlueBase, 0.9),
-  //     bgcolor: alpha(marianBlueBase, 0.2),
-  //     contrastText:
-  //       getContrastRatio(marianBlueMain, "#fff") > 4.5 ? "#fff" : "#111",
-  //   },
-  //   violet: {
-  //     main: violetMain,
-  //     light: alpha(violetBase, 0.5),
-  //     dark: alpha(violetBase, 0.9),
-  //     contrastText:
-  //       getContrastRatio(violetMain, "#fff") > 4.5 ? "#fff" : "#111",
-  //   },
-  //   black: {
-  //     main: blackMain,
-  //     light: alpha(blackBase, 0.5),
-  //     dark: alpha(blackBase, 0.9),
-  //     contrastText: getContrastRatio(blackMain, "#fff") > 4.5 ? "#fff" : "#111",
-  //   },
-  // },
-  // typography: {
-  //   fontFamily: "Roboto, sans-serif",
-  //   h1: {
-  //     fontFamily: "Roboto",
-  //     fontSize: "3rem",
-  //     fontWeight: "bold",
-  //     lineHeight: 1.2,
-  //     letterSpacing: -0.5,
-  //   },
-  // },
-  // CSSBaseLine serve para sobrescrever o style de forma global para elementos HTML tem o GlobalStyles também
-  // components: {
-  //   MuiCssBaseline: {
-  //     styleOverrides: (theme) => ({
-  //       h1: {
-  //         ...theme.typography.h1,
-  //       },
-  //       h2: {
-  //         ...theme.typography.h2,
-  //       },
-  //       h3: {
-  //         ...theme.typography.h3,
-  //       },
-  //       h4: {
-  //         ...theme.typography.h4,
-  //       },
-  //       h5: {
-  //         ...theme.typography.h5,
-  //       },
-  //       h6: {
-  //         ...theme.typography.h6,
-  //       },
-  //     }),
-  //   },
-  // },
 });
