@@ -6,7 +6,8 @@ Procurando referência em instituições de ensino com foco em tecnologia, busqu
 O meu foco, por conta do tempo, foi a parte de **UX**, trazendo feedbacks nas questões e possibilitando que o usuário reinicie a página sem perder seu progresso. O **modo claro e escuro** foi implementado pensando na acessibilidade. O **menu navegável dos módulos** vem para mostrar os conteúdos de forma resumida. A **responsividade** foi pensada, realizando o desenvolvimento em *mobile first*.  
 
 A tela de início do curso foi planejada para ser receptiva e dinâmica.  
-Aprimorei o projeto na parte de **UI**, elaborando um protótipo de alta fidelidade no **Figma**.  
+Aprimorei o projeto na parte de **UI**, elaborando um protótipo de alta fidelidade no **Figma**.
+[Link do protótipo](https://www.figma.com/proto/0mNu075KxfpDjdsv5IMZoC/Desafio---teste-curso-autoinstrucional?page-id=0%3A1&node-id=2-2&p=f&viewport=251%2C178%2C0.05&t=nfvIhMQAJVXml0hE-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2%3A2)
 
 ---
 
@@ -32,7 +33,7 @@ Exemplo de prompt:
 
 ```bash
 # Clone este repositório
-git clone [<url-do-repositorio>](https://github.com/Byorks/Curso-Auto-Instrucional.git)
+git clone https://github.com/Byorks/Curso-Auto-Instrucional.git
 
 # Acesse a pasta do projeto
 cd curso-autoinstrucional-spotify
