@@ -13,7 +13,7 @@ export default function IndexPage() {
         height: "100vh",
         overflow: "hidden",
       })}
-      //   className="flex items-center justify-center h-dvh flex-col gap-5"
+      // className="flex items-center justify-center h-dvh flex-col gap-5"
     >
       <Box
         poster={videoPoster}

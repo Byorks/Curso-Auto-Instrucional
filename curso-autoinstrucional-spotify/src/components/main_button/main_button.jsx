@@ -5,7 +5,6 @@ const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "2rem",
   textTransform: "none",
   boxShadow: "none",
-
   "&:hover": { 
     backgroundColor: ""
    },

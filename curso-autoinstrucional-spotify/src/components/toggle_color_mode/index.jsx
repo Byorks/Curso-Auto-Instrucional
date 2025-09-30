@@ -68,8 +68,8 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export default function ToggleColorMode() {
   const { mode, setMode } = useColorScheme();
-  const [checked, setChecked] = useState(true);
-
+  const [checked, setChecked] = useState();
+  
   if (!mode) {
     return "dark";
   }

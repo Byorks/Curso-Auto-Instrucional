@@ -91,15 +91,26 @@ export default function ModulesPage() {
         }}
       >
         <StyledGrid>
-          <Typography
-            variant="h2"
-            gutterBottom
-            sx={{
-              fontSize: { xs: "2rem", md: "2.5rem" },
-            }}
-          >
-            Módulos
-          </Typography>
+          <Box sx={{width: "100%", display:"flex", justifyContent: "space-between", alignContent: "center"}}>
+            <Typography
+              variant="h2"
+              gutterBottom
+              sx={{
+                fontSize: { xs: "2rem", md: "2.5rem" },
+              }}
+            >
+              Módulos
+            </Typography>
+
+            <Box
+              sx={{
+                display: { xs: "flex", md: "none" },
+              }}
+            >
+              <ToggleColorMode />
+            </Box>
+          </Box>
+
           <Grid container spacing={{ xs: 2, md: 3 }}>
             {MODULESCARD.map((card, i) => (
               <Slide
@@ -116,7 +127,14 @@ export default function ModulesPage() {
             ))}
           </Grid>
         </StyledGrid>
-        <Box sx={{width: "100%", display: "flex", justifyContent: "center", paddingTop: "12px"}}>
+        <Box
+          sx={{
+            display: { xs: "none", md: "flex" },
+            width: "100%",
+            justifyContent: "center",
+            paddingTop: "12px",
+          }}
+        >
           <ToggleColorMode />
         </Box>
       </Box>
