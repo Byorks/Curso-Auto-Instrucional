@@ -8,7 +8,7 @@ import {
   styled,
   Switch
 } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -68,13 +68,33 @@ const MaterialUISwitch = styled(Switch)(({ theme }) => ({
 
 export default function ToggleColorMode() {
   const { mode, setMode } = useColorScheme();
-  const [checked, setChecked] = useState();
+  const [checked, setChecked] = useState( mode == "dark" ? true : false );
+
+  const handleChange = (event) => {
+    console.log("O input está => " + event.target.checked);
+    if (event.target.checked) {
+      setMode("dark");
+      setChecked(true);
+    } else {
+      setMode("light");
+      setChecked(false);
+    }
+  };
   
+useEffect (() => {
+    if (mode == "dark") {
+      setChecked(true);
+    } else {
+      setChecked(false);
+    }
+  }, [mode]);
+
+
   if (!mode) {
-    return "dark";
+    return null;
   }
   return (
-      <MaterialUISwitch checked={checked} onChange={(e) => e.target.checked ? (setMode("dark"), setChecked(true)) : (setMode("light"), setChecked(false))}/>
+      <MaterialUISwitch slotProps={{'aria-label': 'Altera o tema'}} checked={checked} onChange={handleChange}/>
     // <FormControl>
     //   <FormLabel id="demo-theme-toggle">Tema</FormLabel>
     //   <RadioGroup

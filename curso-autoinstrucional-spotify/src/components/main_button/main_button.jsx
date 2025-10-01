@@ -6,8 +6,14 @@ const StyledButton = styled(Button)(({ theme }) => ({
   textTransform: "none",
   boxShadow: "none",
   "&:hover": { 
-    backgroundColor: ""
+    backgroundColor: theme.palette.primary[200]
    },
+  [theme.breakpoints.up("md")]: {
+    fontSize: "1rem"
+  },
+  [theme.breakpoints.up("xl")]: {
+    fontSize: "1.3rem"
+  },
 }));
 
 export default function MainButton({ path, children, color, variant }) {
